@@ -5,7 +5,7 @@ export default function Navbar() {
         <Link to="/" className="site-title">Explore Victoria</Link>
         <ul>
             <CustomLink to="/profile">Profile</CustomLink>
-            <CustomLink to="/search">Search</CustomLink>
+            <CustomLink to="/explore">Explore</CustomLink>
             <CustomLink to="/victoria-resources">Victoria Resources</CustomLink>
             <CustomLink to="/saved-events">Saved Events</CustomLink>
             <CustomLink to="/request">Request</CustomLink>            
