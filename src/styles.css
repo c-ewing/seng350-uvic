@@ -109,7 +109,7 @@ footer a:hover {
     right: 0px;
     bottom: 0px;
     left: 0px;
-    opacity: 0.60;
+    opacity: 0.70;
 }
 
 header {
@@ -126,3 +126,48 @@ header h1 {
     text-align: center;
     top: -30px;
 }
+
+main {
+    margin: 0;
+    position: relative;
+    top: 100px;
+}
+
+main h3 {
+    font-size: 4rem;
+}
+
+span {
+    color: blue;
+    font-weight: 700;
+}
+
+.line {
+    border: 3px solid blue;
+    width: 700px;
+    margin: 30px auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+main li {
+    color: #333;
+    font-size: 2rem;
+    position: relative;
+    list-style: none;
+    border: 2px solid rgb(68, 68, 68);
+    border-radius: 10px;
+    background-color: #777;
+    color: white;
+    width: 300px;
+    margin: 100px auto;
+    text-align: center;
+    padding: 5px;
+}
+
+main li:hover {
+    background-color: rgb(196, 196, 196);
+}
+
