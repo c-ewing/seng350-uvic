@@ -1,4 +1,5 @@
 import Navbar from './common/Navbar'
+import Footer from './common/Footer'
 import Home from './Home/Home'
 import Profile from "./Profile/Profile"
 import Explore from "./Explore/Explore"
@@ -20,5 +21,6 @@ export const ExploreVicWebsite = () => {
         <Route path="/request" element={<Request />} />
       </Routes>
     </div>
+    <Footer />
   </>
 }
