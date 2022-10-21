@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const ITEMS = ['Entertainment', 'Politics', 'Tech', 'Fitness', 'Food', 'Science', 'Travel', 'Health', 'Comedy', 'Music', 'TV', 'Movies', 'Art', 'Sports', 'Video Games', 'Writing']
+const ITEMS = ['Photography', 'Cooking', 'Gardening', 'Volunteering', 'Yoga', 'Painting', 'Musical Instruments', 'Singing', 'Hiking', 'Baking', 'Camping', 'Reading', 'Animals', 'Drawing', 'Entertainment', 'Politics', 'Tech', 'Fitness', 'Food', 'Science', 'Travel', 'Health', 'Comedy', 'Music', 'TV', 'Movies', 'Art', 'Sports', 'Video Games', 'Writing']
 
 
 export default function GroupButtons() {
@@ -15,41 +15,28 @@ export default function GroupButtons() {
 };
 
 function CustomButton({value, children, ...props}) {
-    var clicked = [];
+    var clicked = localStorage.getItem('is-clicked') ? JSON.parse(localStorage.getItem('is-clicked')): [];
     var clickState = false;
-    var index;
-    if (localStorage.getItem('is-clicked')) {
-        clicked = JSON.parse(localStorage.getItem('is-clicked'));
-    }
-    if (clicked.some(e => e.button === value)) {
-        index = clicked.findIndex((obj => obj.button === value));
-        clickState = clicked[index].clicked;
-    }
-    else {
-        const buttonVar = {button: value, clicked: clickState}
-        clicked.push(buttonVar)
-        JSON.parse(localStorage.setItem('is-clicked', JSON.stringify(clicked)))
+   
+    if (clicked.includes(value)) {
+        clickState = true;
     }
 
     const [toggleVariant, setVariant] = useState(clickState);
     const variant = toggleVariant ? "primary": "outline-primary";
     
     const toggleButton = () => { 
-        var clicked = []
-        if (localStorage.getItem('is-clicked')) {
-            clicked = JSON.parse(localStorage.getItem('is-clicked'))
-        }
+        var clicked = localStorage.getItem('is-clicked') ? JSON.parse(localStorage.getItem('is-clicked')): [];
+        console.log(clicked)
         
-        var clickedButton = {
-            button: value, 
-            clicked: !toggleVariant
-        }
-        if (clicked.some(e => e.button === value)) {
-            index = clicked.findIndex((obj => obj.button === value));
-            clicked[index].clicked = !toggleVariant
+        if (clicked.includes(value)) {
+            const index = clicked.indexOf(value);
+            if (index > -1) {
+                clicked.splice(index, 1);
+            }
         }
         else {
-            clicked.push(clickedButton)
+            clicked.push(value)
         }
 
         localStorage.setItem('is-clicked', JSON.stringify(clicked));
