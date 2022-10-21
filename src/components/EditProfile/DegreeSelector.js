@@ -1,38 +1,33 @@
 import { useState } from 'react'
 import Select from 'react-select'
+import React from "react"
 
 const DEGREES = [
-    {value: 'SENG', label: 'Software Engineering'}, 
-    {value: 'CENG', label: 'Computer Engineering'}, 
-    {value: 'CSC', label: 'Computer Science'}]
+    { value: 'SENG', label: 'Software Engineering' },
+    { value: 'CENG', label: 'Computer Engineering' },
+    { value: 'CSC', label: 'Computer Science' }]
+
 
 export default function DegreeSelector() {
-    const [value, setValue] = useState('')
-    var placeholder = "Select Degree..."
+    // Get the initial state:
+    var init_value = DEGREES.find(o => o.value === JSON.parse(localStorage.getItem("profile")).degree.value) ?? ''
+    const [value, setValue] = useState(init_value)
 
-    // TODO dyn reload: https://stackoverflow.com/questions/63994222/store-dropdown-selection-and-load-it-from-localstorage
-
-    const loadHandler = value => {
-        var profile = JSON.parse(localStorage.getItem("profile"))
-        setValue(profile.degree)
-    }
-
-    const changeHandler = value => {
+    const changeHandler = (value) => {
         setValue(value)
 
-        // Set the country in the profile stored locally
+        // Set the degree in the profile stored locally
         var profile = JSON.parse(localStorage.getItem("profile"))
         profile.degree = value
         localStorage.setItem("profile", JSON.stringify(profile))
     }
 
     return (
-    <Select 
-        options={DEGREES} 
-        value={value} 
-        onChange={changeHandler}
-        onLoad={loadHandler}
-        placeholder={placeholder}> 
-    </Select>
+        <Select
+            options={DEGREES}
+            value={value}
+            onChange={changeHandler}
+            placeholder='Select Degree...'>
+        </Select>
     )
 }
