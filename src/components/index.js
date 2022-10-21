@@ -7,6 +7,7 @@ import VictoriaResources from "./VictoriaResources/VictoriaResources"
 import SavedEvents from "./SavedEvents/SavedEvents"
 import Request from "./Request/Request"
 import { Route, Routes} from "react-router-dom"
+import EditProfile from './EditProfile/EditProfile'
 
 export const ExploreVicWebsite = () => {
     return <>
@@ -19,6 +20,7 @@ export const ExploreVicWebsite = () => {
         <Route path="/victoria-resources" element={<VictoriaResources />} />
         <Route path="/saved-events" element={<SavedEvents />} />
         <Route path="/request" element={<Request />} />
+        <Route path="/Profile/EditProfile" element={<EditProfile />} />
       </Routes>
     </div>
     <Footer />
