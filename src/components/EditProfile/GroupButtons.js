@@ -17,11 +17,7 @@ export default function GroupButtons() {
 function CustomButton({ value, children, ...props }) {
     var interests = localStorage.getItem('profile') ? JSON.parse(localStorage.getItem('profile')).interests : [];
 
-    var clickState = false;
-
-    if (interests.includes(value)) {
-        clickState = true;
-    }
+    var clickState = interests.includes(value) ? true: false;
 
     const [toggleVariant, setVariant] = useState(clickState);
     const variant = toggleVariant ? "primary" : "outline-primary";

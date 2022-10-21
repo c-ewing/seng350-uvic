@@ -10,7 +10,10 @@ export default function Profile() {
         let path = `/Profile/EditProfile`; 
         navigate(path);
     }
-    const items = localStorage.getItem('profile') ? JSON.parse(localStorage.getItem('profile')).interests : []
+    const profile = localStorage.getItem('profile') ? JSON.parse(localStorage.getItem('profile')) : [];
+    const interests = profile.interests ? profile.interests: [];
+    const home_country = profile.home_country ? profile.home_country.label: '';
+    const degree = profile.degree ? profile.degree.label: '';
 
 
     return (
@@ -25,13 +28,31 @@ export default function Profile() {
                     <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
                         className="rounded-circle" fluid style={{ width: '150px' }} />
                     </div>
-                    <MDBTypography tag="h4">User Name</MDBTypography>
-                    <MDBCardText className="text-muted mb-4">
-                    Home Country
-                    </MDBCardText>
-                    <MDBCardText className="text-muted mb-4">
-                    Degree
-                    </MDBCardText>
+                    <MDBTypography tag="h4" className="pb-3">User Name</MDBTypography>
+                    <MDBRow>
+                        <MDBCol>
+                            <MDBCardText className="text-end mb-4">
+                            Home Country
+                            </MDBCardText>
+                        </MDBCol>
+                        <MDBCol>
+                            <MDBCardText className="text-start text-muted mb-4">
+                            {home_country}
+                            </MDBCardText>
+                        </MDBCol>
+                    </MDBRow>
+                    <MDBRow>
+                        <MDBCol>
+                            <MDBCardText className="text-end mb-4">
+                            Degree
+                            </MDBCardText>
+                        </MDBCol>
+                        <MDBCol>
+                            <MDBCardText className="text-start text-muted mb-4">
+                            {degree}
+                            </MDBCardText>
+                        </MDBCol>
+                    </MDBRow>
                     <MDBBtn onClick={routeChange} rounded size="lg">
                     Edit Profile
                     </MDBBtn>
@@ -41,9 +62,9 @@ export default function Profile() {
             <MDBCol md="12" xl="7">
                 <MDBCard style={{ borderRadius: '15px' }}>
                 <MDBCardBody className="text-center">
-                    <MDBTypography tag="h4">Your Interests</MDBTypography>
+                    <MDBTypography tag="h4" className="mb-4">Your Interests</MDBTypography>
                     <div className="mb-4 pb-2">
-                        {items.map(item => <MDBBtn color={'primary'} style={{ margin: 5}}>{item}</MDBBtn>)}
+                        {interests.map(interest => <MDBBtn color={'primary'} style={{ margin: 7}}>{interest}</MDBBtn>)}
                     </div>
                 </MDBCardBody>
                 </MDBCard>
