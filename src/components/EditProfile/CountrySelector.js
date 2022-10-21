@@ -8,6 +8,11 @@ export default function CountrySelector() {
 
     const changeHandler = value => {
         setValue(value)
+        
+        // Set the country in the profile stored locally
+        var profile = JSON.parse(localStorage.getItem("profile"))
+        profile.home_country = value
+        localStorage.setItem("profile", JSON.stringify(profile))
     }
 
     return (
