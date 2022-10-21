@@ -10,7 +10,7 @@ export default function Profile() {
         let path = `/Profile/EditProfile`; 
         navigate(path);
     }
-    const items = JSON.parse(localStorage.getItem('is-clicked'));
+    const items = localStorage.getItem('profile') ? JSON.parse(localStorage.getItem('profile')).interests : []
 
 
     return (
