@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const ITEMS = ['Photography', 'Cooking', 'Gardening', 'Volunteering', 'Yoga', 'Painting', 'Musical Instruments', 'Singing', 'Hiking', 'Baking', 'Camping', 'Reading', 'Animals', 'Drawing', 'Entertainment', 'Politics', 'Tech', 'Fitness', 'Food', 'Science', 'Travel', 'Health', 'Comedy', 'Music', 'TV', 'Movies', 'Art', 'Sports', 'Video Games', 'Writing']
+const ITEMS = ['Photography', 'Cooking', 'Gardening', 'Volunteering', 'Yoga', 'Painting', 'Musical Instruments', 'Singing', 'Hiking', 'Baking', 'Camping', 'Reading', 'Animals', 'Drawing', 'Entertainment', 'Politics', 'Tech', 'Fitness', 'Food', 'Science', 'Travel', 'Health', 'Comedy', 'Music', 'TV', 'Movies', 'Art', 'Sports', 'Ice Skating', 'Skateboarding', 'Fishing', 'Board Games', 'Brewery', 'Video Games', 'Writing']
 
 
 export default function GroupButtons() {
