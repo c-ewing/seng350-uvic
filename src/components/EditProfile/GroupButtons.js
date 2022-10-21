@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const ITEMS = ['Entertainment', 'Politics', 'Tech', 'Fitness', 'Food', 'Science', 'Travel', 'Health', 'Comedy', 'Music', 'TV', 'Movies', 'Art', 'Sports', 'Video Games', 'Writing']
+const ITEMS = ['Photography', 'Cooking', 'Gardening', 'Volunteering', 'Yoga', 'Painting', 'Musical Instruments', 'Singing', 'Hiking', 'Baking', 'Camping', 'Reading', 'Animals', 'Drawing', 'Entertainment', 'Politics', 'Tech', 'Fitness', 'Food', 'Science', 'Travel', 'Health', 'Comedy', 'Music', 'TV', 'Movies', 'Art', 'Sports', 'Ice Skating', 'Skateboarding', 'Fishing', 'Board Games', 'Brewery', 'Video Games', 'Writing']
 
 
 export default function GroupButtons() {
@@ -14,56 +14,45 @@ export default function GroupButtons() {
     );
 };
 
-function CustomButton({value, children, ...props}) {
-    var clicked = [];
+function CustomButton({ value, children, ...props }) {
+    var interests = localStorage.getItem('profile') ? JSON.parse(localStorage.getItem('profile')).interests : [];
+
     var clickState = false;
-    var index;
-    if (localStorage.getItem('is-clicked')) {
-        clicked = JSON.parse(localStorage.getItem('is-clicked'));
-    }
-    if (clicked.some(e => e.button === value)) {
-        index = clicked.findIndex((obj => obj.button === value));
-        clickState = clicked[index].clicked;
-    }
-    else {
-        const buttonVar = {button: value, clicked: clickState}
-        clicked.push(buttonVar)
-        JSON.parse(localStorage.setItem('is-clicked', JSON.stringify(clicked)))
+
+    if (interests.includes(value)) {
+        clickState = true;
     }
 
     const [toggleVariant, setVariant] = useState(clickState);
-    const variant = toggleVariant ? "primary": "outline-primary";
-    
-    const toggleButton = () => { 
-        var clicked = []
-        if (localStorage.getItem('is-clicked')) {
-            clicked = JSON.parse(localStorage.getItem('is-clicked'))
-        }
+    const variant = toggleVariant ? "primary" : "outline-primary";
+
+    const toggleButton = () => {
+        var profile = localStorage.getItem('profile') ? JSON.parse(localStorage.getItem('profile')) : [];
         
-        var clickedButton = {
-            button: value, 
-            clicked: !toggleVariant
-        }
-        if (clicked.some(e => e.button === value)) {
-            index = clicked.findIndex((obj => obj.button === value));
-            clicked[index].clicked = !toggleVariant
+        //console.log(profile.interests)
+
+        if (profile.interests.includes(value)) {
+            const index = profile.interests.indexOf(value);
+            if (index > -1) {
+                profile.interests.splice(index, 1);
+            }
         }
         else {
-            clicked.push(clickedButton)
+            profile.interests.push(value)
         }
 
-        localStorage.setItem('is-clicked', JSON.stringify(clicked));
+        localStorage.setItem('profile', JSON.stringify(profile));
         setVariant(!toggleVariant);
     };
 
     return (
         <>
-            <Button 
-                style={{padding:'0.25rem', margin:'0.2rem'}} 
-                {...props} 
-                onClick={toggleButton} 
+            <Button
+                style={{ padding: '0.25rem', margin: '0.2rem' }}
+                {...props}
+                onClick={toggleButton}
                 variant={variant}>
-                    {children}
+                {children}
             </Button>{'  '}
         </>
     )
