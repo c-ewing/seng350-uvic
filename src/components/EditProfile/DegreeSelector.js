@@ -20,7 +20,7 @@ const DEGREES = [
     { value: 'CHEM', label: 'Chemistry' },
     { value: 'CYC', label: 'Child and Youth Care' },
     { value: 'CE', label: 'Civil Engineering' },
-    {value: 'COM', label: 'Commerce' },
+    { value: 'COM', label: 'Commerce' },
     { value: 'CD', label: 'Community Development' },
     { value: 'CSC', label: 'Computer Science' },
     { value: 'CW', label: 'Creative Writing' },
@@ -111,11 +111,11 @@ export default function DegreeSelector() {
     }
 
     return (
-        <Select
-            options={DEGREES}
-            value={value}
-            onChange={changeHandler}
-            placeholder='Select Degree...'>
-        </Select>
+            <Select
+                options={DEGREES}
+                value={value}
+                onChange={changeHandler}
+                placeholder='Select Degree...'>
+            </Select>
     )
 }
