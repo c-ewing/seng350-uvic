@@ -31,12 +31,13 @@ export default function EditProfile() {
         <>
             <h1>Edit Profile</h1>
             <p></p>
-            <p>Choose Your Home Country</p>
+            <p id='orange'><span>Choose Your Home Country</span></p>
             <CountrySelector></CountrySelector>
             <p></p>
-            <p>Choose Your Degree </p>
+            <p id='orange'><span>Choose Your Degree </span></p>
             <DegreeSelector></DegreeSelector>
             <p></p>
+            
             <GroupButtons></GroupButtons>
             <p></p>
             <p>
