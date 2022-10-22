@@ -30,10 +30,15 @@ export default function EditProfile() {
     return (
         <>
             <h1>Edit Profile</h1>
+            <p></p>
             <p>Choose Your Home Country</p>
             <CountrySelector></CountrySelector>
+            <p></p>
+            <p>Choose Your Degree </p>
             <DegreeSelector></DegreeSelector>
+            <p></p>
             <GroupButtons></GroupButtons>
+            <p></p>
             <p>
                 <Button color="primary" className="px-4" style={{ padding: '0.25rem', margin: '0.2rem' }}
                     onClick={routeChange}>
