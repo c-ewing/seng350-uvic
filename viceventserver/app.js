@@ -5,8 +5,11 @@ var logger = require('morgan');
 
 // https://expressjs.com/en/guide/routing.html
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//var indexRouter = require('./routes/index');
+//var usersRouter = require('./routes/users');
+
+// Begin server code - above will be removed and serves only as an example
+var resourceRouter = require('./routes/resource')
 
 var app = express();
 
@@ -16,7 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', resourceRouter);
+//app.use('/users', usersRouter);
 
 module.exports = app;
