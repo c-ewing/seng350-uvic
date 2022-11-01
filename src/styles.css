@@ -2,17 +2,27 @@
     box-sizing: border-box;
 }
 
-body {
+html, body {
     margin: 0;
-    background-color: rgb(145, 144, 144);
+    width: 100%;
+    height: 100%;
+}
+
+#root{
+    margin: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .container {
-    margin: 0 auto;
-    text-align: center;
+    margin: auto;
+    /* display: flex;
+    justify-content: center;
+    align-items: stretch;
+    */
+    text-align: center; 
     height: 100vh;
-    border-right: 10px solid #333;
-    border-left: 10px solid #333;
+    width: 100%;
     padding: 0;
     background-color: white;
 }
@@ -94,16 +104,18 @@ footer a:hover {
     color: white;
 }
 
-.banner::before {
+.banner {
     content: "";
     background-image: url("img/university-of-victoria.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    position: absolute;
-    top: 0px;
+    background-position: center;
+    /* position: absolute; */
+    margin: 0;
+    /* top: 0px;
     right: 0px;
     bottom: 0px;
-    left: 0px;
+    left: 0px; */
     opacity: 0.70;
 }
 
@@ -118,12 +130,12 @@ main h3 {
 }
 
 span {
-    color: blue;
+    color: #00008B;
     font-weight: 700;
 }
 
 .line {
-    border: 3px solid blue;
+    border: 3px solid #00008B;
     width: 700px;
     margin: 30px auto;
 }

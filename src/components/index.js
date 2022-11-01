@@ -6,7 +6,10 @@ import Explore from "./Explore/Explore"
 import VictoriaResources from "./VictoriaResources/VictoriaResources"
 import SavedEvents from "./SavedEvents/SavedEvents"
 import Request from "./Request/Request"
-import { Route, Routes} from "react-router-dom"
+import {
+  Route,
+  Routes
+} from "react-router-dom"
 import EditProfile from './EditProfile/EditProfile'
 
 export const ExploreVicWebsite = () => {

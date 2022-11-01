@@ -19,56 +19,66 @@ export default function Profile() {
     return (
         <div className="vh-100" style={{ backgroundColor: '#eee'}}>
             <MDBContainer className="container py-5 h-100">
-            <MDBTypography className="mb-4 pb-2" tag="h1">My Profile</MDBTypography>
+                <MDBTypography className="mb-4 pb-2" tag="h1">My Profile</MDBTypography>
                 <MDBRow className="justify-content-center align-items-left h-100">
                     <MDBCol md="12" xl="4">
-                <MDBCard style={{ borderRadius: '15px' }}>
-                <MDBCardBody className="text-center">
-                    <div className="mt-3 mb-4 pb-2">
-                    <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-                        className="rounded-circle" fluid style={{ width: '150px' }} />
-                    </div>
-                    <MDBTypography tag="h4" className="pb-3">User Name</MDBTypography>
-                    <MDBRow>
-                        <MDBCol>
-                            <MDBCardText className="text-end mb-4">
-                            Home Country
-                            </MDBCardText>
-                        </MDBCol>
-                        <MDBCol>
-                            <MDBCardText className="text-start text-muted mb-4">
-                            {home_country}
-                            </MDBCardText>
-                        </MDBCol>
-                    </MDBRow>
-                    <MDBRow>
-                        <MDBCol>
-                            <MDBCardText className="text-end mb-4">
-                            Degree
-                            </MDBCardText>
-                        </MDBCol>
-                        <MDBCol>
-                            <MDBCardText className="text-start text-muted mb-4">
-                            {degree}
-                            </MDBCardText>
-                        </MDBCol>
-                    </MDBRow>
-                    <MDBBtn onClick={routeChange} rounded size="lg">
-                    Edit Profile
-                    </MDBBtn>
-                </MDBCardBody>
-                </MDBCard>
-            </MDBCol>
-            <MDBCol md="12" xl="7">
-                <MDBCard style={{ borderRadius: '15px' }}>
-                <MDBCardBody className="text-center">
-                    <MDBTypography tag="h4" className="mb-4">Your Interests</MDBTypography>
-                    <div className="mb-4 pb-2">
-                        {interests.map(interest => <MDBBtn color={'primary'} style={{ margin: 7}}>{interest}</MDBBtn>)}
-                    </div>
-                </MDBCardBody>
-                </MDBCard>
-            </MDBCol>
+                        <MDBCard style={{ borderRadius: '15px' }}>
+                            <MDBCardBody className="text-center">
+                                <div className="mt-3 mb-4 pb-2">
+                                <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                                    className="rounded-circle" fluid style={{ width: '150px' }} />
+                                </div>
+                                <MDBTypography tag="h4" className="pb-3">User Name</MDBTypography>
+                                <MDBRow>
+                                    <MDBCol>
+                                        <MDBCardText className="text-end mb-4">
+                                        Home Country
+                                        </MDBCardText>
+                                    </MDBCol>
+                                    <MDBCol>
+                                        <MDBCardText className="text-start text-muted mb-4">
+                                        {home_country}
+                                        </MDBCardText>
+                                    </MDBCol>
+                                </MDBRow>
+                                <MDBRow>
+                                    <MDBCol>
+                                        <MDBCardText className="text-end mb-4">
+                                        Degree
+                                        </MDBCardText>
+                                    </MDBCol>
+                                    <MDBCol>
+                                        <MDBCardText className="text-start text-muted mb-4">
+                                        {degree}
+                                        </MDBCardText>
+                                    </MDBCol>
+                                </MDBRow>
+                                <MDBBtn onClick={routeChange} rounded size="lg">
+                                Edit Profile
+                                </MDBBtn>
+                            </MDBCardBody>
+                        </MDBCard>
+                    </MDBCol>
+                    <MDBCol md="12" xl="7">
+                        <MDBCard style={{ borderRadius: '15px' }}>
+                            <MDBCardBody className="text-center">
+                                <MDBTypography tag="h4" className="mb-4">Your Interests</MDBTypography>
+                                <div className="mb-4 pb-2">
+                                    {interests.map(interest => <MDBBtn color={'primary'} style={{ margin: 7}}>{interest}</MDBBtn>)}
+                                </div>
+                            </MDBCardBody>
+                        </MDBCard>
+                    </MDBCol>
+                    <MDBCol md="12" xl="7">
+                        <MDBCard style={{ borderRadius: '15px' }}>
+                            <MDBCardBody className="text-center">
+                                <MDBTypography tag="h4" className="mb-4">Your Saved Events</MDBTypography>
+                                <div className="mb-4 pb-2">
+                                
+                                </div>
+                            </MDBCardBody>
+                        </MDBCard>
+                    </MDBCol>
                 </MDBRow>
             </MDBContainer>
         </div>
