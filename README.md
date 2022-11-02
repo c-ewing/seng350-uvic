@@ -26,10 +26,23 @@ The `id` of the resource being queried is **optional** and only used to request 
 ---
 
 ### Response format:
+
+Data is return in response to a valid [request](#request-format) in the following format:
+
+```json
+{
+    "title":                "",
+    "id":                   "",
+    "start-date:":          "",
+    "end-date":             "",
+    "short-description":    "",
+    "long-description":     "", // Not filled unless responding to a request with an `id` specified
+    "image":                "" // Optional image, only for requests with `id` specified
+}
+```
+
 [TODO]
 - compression?
-- send the short description of an event unless the optional `id` is provided
-- if `id` is provided send the full event details ands description as a response
 - unique id for each event
 ---
 
