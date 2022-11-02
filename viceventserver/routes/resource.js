@@ -35,4 +35,11 @@ const handle_valid = function (req, res) {
 // First filter bad requests, then handle valid ones
 router.get('/:resourceType/:id?', [filter_req, handle_valid])
 
+/* POST request. */
+// Handle event suggestions
+router.post('/submit', (req, res) => {
+    res.status(418)
+    res.send("Unimplemented").end()
+})
+
 module.exports = router;
