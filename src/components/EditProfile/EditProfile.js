@@ -32,14 +32,13 @@ export default function EditProfile() {
             <h1 className='p-4'>Edit Profile</h1>
             <p></p>
             <p className='p-2'><span style={{ color:'black', fontSize: 20}}>Choose Your Home Country</span></p>
-            <CountrySelector></CountrySelector>
-            <p className='p-4'></p>
+            <div style={{width:'50%', marginLeft: 'auto', marginRight: 'auto'}}><CountrySelector></CountrySelector></div>
+            <p className='p-4'></p> 
             <p><span style={{ color:'black', fontSize: 20}}>Choose Your Degree </span></p>
-            <DegreeSelector></DegreeSelector>
+            <div style={{width:'50%', marginLeft: 'auto', marginRight: 'auto'}}><DegreeSelector></DegreeSelector></div>
             <p className='p-4'></p>
-            
             <p><span style={{ color:'black', fontSize: 20}}>Select Your Interests</span></p>
-            <GroupButtons></GroupButtons>
+            <div style={{width:'50%', marginLeft: 'auto', marginRight: 'auto'}}><GroupButtons></GroupButtons></div>
             <p className='p-4'></p>
             <p>
                 <Button color="primary" className="px-4" style={{ padding: '0.25rem', margin: '0.2rem' }}
