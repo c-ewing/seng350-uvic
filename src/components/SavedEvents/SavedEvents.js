@@ -1,158 +1,179 @@
 import React from 'react';
 import {
-    MDBCarousel,
-    MDBCarouselItem,
+    MDBCard,
+    MDBCardBody,
+    MDBCardTitle,
+    MDBCardText,
+    MDBRow,
+    MDBCol,
+    MDBBtn,
+    MDBCollapse
 } from 'mdb-react-ui-kit';
+import { useNavigate } from "react-router-dom";
+import {useState} from 'react';
+import { Button } from 'react-bootstrap';
 
-const interval = 10000;
-
-const sectionStyle = {
-    zIndex: 0
+const container = {
+    height: "auto",
+    margin: "20px",
+    border: "2px solid grey",
+    borderRadius: "10px",
+    padding: "10px"
 }
-
-const containerStyle = {
-    marginBottom: 40
-}
-
 
 export default function SavedEvents() {
+    const [showShow1, setShowShow1] = useState(false);
+    const [showShow2, setShowShow2] = useState(false);
+    const [showShow3, setShowShow3] = useState(false);
+    const [showShow4, setShowShow4] = useState(false);
+    const [showShow5, setShowShow5] = useState(false);
+    const [showShow6, setShowShow6] = useState(false);
+    const [showShow7, setShowShow7] = useState(false);
+
+    const toggleShow1 = () => setShowShow1(!showShow1);
+    const toggleShow2 = () => setShowShow2(!showShow2);
+    const toggleShow3 = () => setShowShow3(!showShow3);
+    const toggleShow4 = () => setShowShow4(!showShow4);
+    const toggleShow5 = () => setShowShow5(!showShow5);
+    const toggleShow6 = () => setShowShow6(!showShow6);
+    const toggleShow7 = () => setShowShow7(!showShow7);
     return (
-        <div style={containerStyle} className='container'>
-            <div style={sectionStyle} className='section section-1'>
-                <h1>Event Section 1</h1>
-                <MDBCarousel showIndicators showControls style={sectionStyle} interval={interval}>
-                    <MDBCarouselItem
-                    className='w-100 d-block'
-                    itemId={1}
-                    src='https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg'
-                    alt='...'
-                    >
-                    <h5>First slide label</h5>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </MDBCarouselItem>
-                    <MDBCarouselItem
-                        className='w-100 d-block'
-                        itemId={2}
-                        src='https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg'
-                        alt='...'
-                    >
-                        <h5>Second slide label</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </MDBCarouselItem>
-                    <MDBCarouselItem
-                        className='w-100 d-block'
-                        itemId={3}
-                        src='https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg'
-                        alt='...'
-                    >
-                        <h5>Third slide label</h5>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                    </MDBCarouselItem>
-                </MDBCarousel>
-            </div>
-            <div className='section section-2'>
-                <h1>Event Section 2</h1>
-                <MDBCarousel showIndicators showControls style={sectionStyle} interval={interval}>
-                <MDBCarouselItem
-                className='w-100 d-block'
-                itemId={1}
-                src='https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg'
-                alt='...'
-                >
-                <h5>First slide label</h5>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </MDBCarouselItem>
-
-                <MDBCarouselItem
-                    className='w-100 d-block'
-                    itemId={2}
-                    src='https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg'
-                    alt='...'
-                >
-                    <h5>Second slide label</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </MDBCarouselItem>
-            
-                <MDBCarouselItem
-                    className='w-100 d-block'
-                    itemId={3}
-                    src='https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg'
-                    alt='...'
-                >
-                    <h5>Third slide label</h5>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                </MDBCarouselItem>
-                </MDBCarousel>
-            </div>
-            <div className='section section-3'>
-                <h1>Event Section 3</h1>
-                <MDBCarousel showIndicators showControls style={sectionStyle} interval={interval}>
-                <MDBCarouselItem
-                className='w-100 d-block'
-                itemId={1}
-                src='https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg'
-                alt='...'
-                >
-                <h5>First slide label</h5>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </MDBCarouselItem>
-
-                <MDBCarouselItem
-                    className='w-100 d-block'
-                    itemId={2}
-                    src='https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg'
-                    alt='...'
-                >
-                    <h5>Second slide label</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </MDBCarouselItem>
-            
-                <MDBCarouselItem
-                    className='w-100 d-block'
-                    itemId={3}
-                    src='https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg'
-                    alt='...'
-                >
-                    <h5>Third slide label</h5>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                </MDBCarouselItem>
-                </MDBCarousel>
-            </div>
-            <div className='section section-4'>
-                <h1>Event Section 4</h1>
-                <MDBCarousel showIndicators showControls style={sectionStyle} interval={interval}>
-                <MDBCarouselItem
-                className='w-100 d-block'
-                itemId={1}
-                src='https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg'
-                alt='...'
-                >
-                <h5>First slide label</h5>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </MDBCarouselItem>
-
-                <MDBCarouselItem
-                    className='w-100 d-block'
-                    itemId={2}
-                    src='https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg'
-                    alt='...'
-                >
-                    <h5>Second slide label</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </MDBCarouselItem>
-            
-                <MDBCarouselItem
-                    className='w-100 d-block'
-                    itemId={3}
-                    src='https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg'
-                    alt='...'
-                >
-                    <h5>Third slide label</h5>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                </MDBCarouselItem>
-                </MDBCarousel>
-            </div>
+        <>
+        <div style={container} className='sports-teams container'>
+            <h1>Sports Teams</h1>
+            <Button onClick={toggleShow1}>Hide/Show</Button>
+            <MDBCollapse show={showShow1}>
+                <MDBCol sm='12'>
+                    <MDBCard>
+                        <MDBCardBody>
+                            <MDBCardTitle>
+                                Special title treatment
+                                </MDBCardTitle>
+                            <MDBCardText>
+                                With supporting text below as a natural lead-in to additional content.
+                            </MDBCardText>
+                            <MDBBtn href='#'>Go somewhere</MDBBtn>
+                        </MDBCardBody>
+                    </MDBCard>
+                </MDBCol>
+            </MDBCollapse>
+        </div>
+        <div style={container} className='restaurants container'>
+            <h1>Restaurants</h1>
+            <Button onClick={toggleShow2}>Hide/Show</Button>
+            <MDBCollapse show={showShow2}>
+                <MDBCol sm='12'>
+                    <MDBCard>
+                        <MDBCardBody>
+                            <MDBCardTitle>
+                                Special title treatment
+                                </MDBCardTitle>
+                            <MDBCardText>
+                                With supporting text below as a natural lead-in to additional content.
+                            </MDBCardText>
+                            <MDBBtn href='#'>Go somewhere</MDBBtn>
+                        </MDBCardBody>
+                    </MDBCard>
+                </MDBCol>
+            </MDBCollapse>
+        </div>
+        <div style={container} className='school-clubs container'>
+            <h1>School Clubs</h1>
+            <Button onClick={toggleShow3}>Hide/Show</Button>
+            <MDBCollapse show={showShow3}>
+                <MDBCol sm='12'>
+                    <MDBCard>
+                        <MDBCardBody>
+                            <MDBCardTitle>
+                                Special title treatment
+                                </MDBCardTitle>
+                            <MDBCardText>
+                                With supporting text below as a natural lead-in to additional content.
+                            </MDBCardText>
+                            <MDBBtn href='#'>Go somewhere</MDBBtn>
+                        </MDBCardBody>
+                    </MDBCard>
+                </MDBCol>
+            </MDBCollapse>
+        </div>
+        <div style={container} className='events container'>
+            <h1>Events</h1>
+            <Button onClick={toggleShow4}>Hide/Show</Button>
+            <MDBCollapse show={showShow4}>
+                <MDBCol sm='12'>
+                    <MDBCard>
+                        <MDBCardBody>
+                            <MDBCardTitle>
+                                Special title treatment
+                                </MDBCardTitle>
+                            <MDBCardText>
+                                With supporting text below as a natural lead-in to additional content.
+                            </MDBCardText>
+                            <MDBBtn href='#'>Go somewhere</MDBBtn>
+                        </MDBCardBody>
+                    </MDBCard>
+                </MDBCol>
+            </MDBCollapse>
+        </div>
+        <div style={container} className='vic-resources container'>
+            <h1>Victoria Resources</h1>
+            <Button onClick={toggleShow5}>Hide/Show</Button>
+            <MDBCollapse show={showShow5}>
+                <MDBCol sm='12'>
+                    <MDBCard>
+                        <MDBCardBody>
+                            <MDBCardTitle>
+                                Special title treatment
+                                </MDBCardTitle>
+                            <MDBCardText>
+                                With supporting text below as a natural lead-in to additional content.
+                            </MDBCardText>
+                            <MDBBtn href='#'>Go somewhere</MDBBtn>
+                        </MDBCardBody>
+                    </MDBCard>
+                </MDBCol>
+            </MDBCollapse>
+        </div>
+        <div style={container} className='deg-opportunities container'>
+            <h1>Degree Specific Opportunities</h1>
+            <Button onClick={toggleShow6}>Hide/Show</Button>
+            <MDBCollapse show={showShow6}>
+                <MDBCol sm='12'>
+                    <MDBCard>
+                        <MDBCardBody>
+                            <MDBCardTitle>
+                                Special title treatment
+                                </MDBCardTitle>
+                            <MDBCardText>
+                                With supporting text below as a natural lead-in to additional content.
+                            </MDBCardText>
+                            <MDBBtn href='#'>Go somewhere</MDBBtn>
+                        </MDBCardBody>
+                    </MDBCard>
+                </MDBCol>
+            </MDBCollapse>
+        </div>
+        <div style={container} className='job-opportunities container'>
+            <h1>Job Opportunities</h1>
+            <Button onClick={toggleShow7}>Hide/Show</Button>
+            <MDBCollapse show={showShow7}>
+                <MDBCol sm='12'>
+                    <MDBCard>
+                        <MDBCardBody>
+                            <MDBCardTitle>
+                                Special title treatment
+                                </MDBCardTitle>
+                            <MDBCardText>
+                                With supporting text below as a natural lead-in to additional content.
+                            </MDBCardText>
+                            <MDBBtn href='#'>Go somewhere</MDBBtn>
+                        </MDBCardBody>
+                    </MDBCard>
+                </MDBCol>
+            </MDBCollapse>
         </div>
         
+        </>
     );
+
 }
