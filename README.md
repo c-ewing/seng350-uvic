@@ -13,13 +13,13 @@ The `type` of resource being queried is defined as follows and is **required** f
 
 | Resource Type | Type name |
 | ------------- | --------- |
-| Sports Team   | sports-team |
-| Restaurant    | restaurant |
-| School Club   | school-club |
-| Event         | event     |
-| Victoria Resource | vic-resource |
-| Degree Specific Opportunity | degree-opportunity |
-| Job Opportunity | job     |
+| Sports Team   | SportsTeams |
+| Restaurant    | Restaurants |
+| School Club   | SchoolClubs |
+| Event         | Events     |
+| Victoria Resource | VictoriaResources |
+| Degree Specific Opportunity | DegreeSpecificOpportunities |
+| Job Opportunity | JobOpportunities |
 
 The `id` of the resource being queried is **optional** and only used to request the full resource details
 
@@ -31,25 +31,21 @@ Data is return in response to a valid [request](#request-format) in the followin
 
 ```json
 {
+    "id":                   "", // UUID V4: https://www.uuidgenerator.net/version4
     "title":                "",
-    "id":                   "",
-    "start-date:":          "",
-    "end-date":             "",
+    "start-date:":          "", // JSON Date String
+    "end-date":             "", // JSON Date String
     "short-description":    "",
     "long-description":     "", // Not filled unless responding to a request with an `id` specified
     "image":                "" // Optional image, only for requests with `id` specified
 }
 ```
-
-[TODO]
-- compression?
-- unique id for each event
 ---
 
 ### Submission format:
-[TODO] 
-- Base64 encoded or compressed?
-- Post Request
+```
+UNIMPLEMENTED
+```
 ---
 
 ### Setup:
