@@ -10,7 +10,7 @@ import {
   Route,
   Routes
 } from "react-router-dom"
-import EditProfile from './EditProfile/EditProfile'
+import EditProfile from './Profile/EditProfile/EditProfile'
 
 export const ExploreVicWebsite = () => {
     return <>

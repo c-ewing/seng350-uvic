@@ -18,7 +18,7 @@ export default function Profile() {
 
     return (
         <div className="vh-100" style={{ backgroundColor: '#eee'}}>
-            <MDBContainer className="container py-5 h-100">
+            <MDBContainer className="container py-3 h-100">
                 <MDBTypography className="mb-4 pb-2" tag="h1">My Profile</MDBTypography>
                 <MDBRow className="justify-content-center align-items-left h-100">
                     <MDBCol md="12" xl="4">
