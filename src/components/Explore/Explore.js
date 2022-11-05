@@ -7,8 +7,8 @@ export default function Explore() {
         <div className="vh-100" style={{ backgroundColor: '#eee'}}>
             <MDBContainer className="container py-3 h-100">
                 <MDBTypography className="mb-4 pb-2" tag="h1">Explore</MDBTypography>
-                <SearchBar></SearchBar>
-                <Categories></Categories>
+                <SearchBar />
+                <Categories />
             </MDBContainer>
         </div>
     );
