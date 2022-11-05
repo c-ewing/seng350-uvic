@@ -68,17 +68,15 @@ export default function Profile() {
                                 </div>
                             </MDBCardBody>
                         </MDBCard>
-                    </MDBCol>
-                    <MDBCol md="12" xl="7">
-                        <MDBCard style={{ borderRadius: '15px' }}>
+                        <MDBCard style={{ borderRadius: '15px', margin: '15px 0' }}>
                             <MDBCardBody className="text-center">
                                 <MDBTypography tag="h4" className="mb-4">Your Saved Events</MDBTypography>
                                 <div className="mb-4 pb-2">
-                                
                                 </div>
                             </MDBCardBody>
                         </MDBCard>
                     </MDBCol>
+                    
                 </MDBRow>
             </MDBContainer>
         </div>
