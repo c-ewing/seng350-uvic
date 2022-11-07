@@ -42,7 +42,7 @@ resource_db.all("SELECT name FROM sqlite_schema \
         } else {
             // Check the database exists by seeing what tables are in it
             let table_names = rows.map(val => val.name)
-            console.debug("Tables Exist: ", TABLES.every(table => table_names.includes(table)))
+            console.info("Tables Exist: ", TABLES.every(table => table_names.includes(table)))
             // If not every table name is in the row: 
             if (!TABLES.every(table => table_names.includes(table))) {
                 // Create tables

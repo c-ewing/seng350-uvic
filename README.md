@@ -7,9 +7,11 @@
 Data can be requested from the server using a `get` request following the format:
 
 ```
-baseurl/<type>/[id]
+baseurl/resources/<TYPE>/id/[ID]
+baseurl/resources/<TYPE>/range/[START-END]
+baseurl/search/<TERM>/[START-END]/[TYPE]
 ```
-The `type` of resource being queried is defined as follows and is **required** for a valid request:
+The `TYPE` of resource being queried is defined as follows and is **required** for a valid request:
 
 | Resource Type | Type name |
 | ------------- | --------- |
@@ -22,6 +24,9 @@ The `type` of resource being queried is defined as follows and is **required** f
 | Job Opportunity | JobOpportunities |
 
 The `id` of the resource being queried is **optional** and only used to request the full resource details
+The `start-end` option is mutually exclusive with `id` and is used to define a range of results to to retrieve from the API
+
+NOTE: handling of ranges is not robust and requires the exact format be followed
 
 ---
 
