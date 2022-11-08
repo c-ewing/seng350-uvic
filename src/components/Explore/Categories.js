@@ -59,7 +59,7 @@ export default function Categories() {
                     </MDBBtn>
                 </MDBCol>
             </MDBCol>
-      </MDBContainer>
+    </MDBContainer>
     )
 }
 
