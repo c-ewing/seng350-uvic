@@ -1,17 +1,23 @@
 # Server for Victoria Event Finder (SENG350 Project)
+ NodeJS and ExpressJS server backed with a SQLite Database
 
-## NodeJS and ExpressJS server backed with a SQLite Database
+# Request format:
 
-### Request format:
-
-Data can be requested from the server using a `get` request following the format:
+Data can be requested from the server using a `get` request following the formats:
 
 ```
 baseurl/resources/<TYPE>/id/[ID]
 baseurl/resources/<TYPE>/range/[START-END]
-baseurl/search/<TERM>/[START-END]/[TYPE]
+baseurl/search/<TERM>/[TYPE#START-END]
 ```
-The `TYPE` of resource being queried is defined as follows and is **required** for a valid request:
+## `Resources` Requests:
+The `id` of the resource being queried is **optional** and only used to request the full resource details
+
+The `range` is **optional** and **mutually exclusive** with `id` and is used to define a range of results to to retrieve from the endpoint
+
+If neither `id` nor `range` is provided then the query returns up to `MAX_NUM_RESULTS` (default 20) from the specified `TYPE`
+
+The `TYPE` of resource being queried is defined as follows and is **required** for a valid `resources` request:
 
 | Resource Type | Type name |
 | ------------- | --------- |
@@ -23,16 +29,18 @@ The `TYPE` of resource being queried is defined as follows and is **required** f
 | Degree Specific Opportunity | DegreeSpecificOpportunities |
 | Job Opportunity | JobOpportunities |
 
-The `id` of the resource being queried is **optional** and only used to request the full resource details
-The `start-end` option is mutually exclusive with `id` and is used to define a range of results to to retrieve from the API
-
-NOTE: handling of ranges is not robust and requires the exact format be followed
-
 ---
 
-### Response format:
+## `Search` Requests:
+The `TERM` is required and is a string to search for within the `Resources`
 
-Data is return in response to a valid [request](#request-format) in the following format:
+**Optionally** following the `TERM` are parameters `TYPE` (as above) and `START`/`END` (indicating a slice of results)
+
+**
+
+# Response format:
+
+Data is return in response to a valid [request](#resources-requests) in the following format. Responses may contain a list of these objects.
 
 ```json
 {
@@ -47,13 +55,13 @@ Data is return in response to a valid [request](#request-format) in the followin
 ```
 ---
 
-### Submission format:
+# Submission format:
 ```
 UNIMPLEMENTED
 ```
 ---
 
-### Setup:
+# Server Setup:
 In a separate directory from one containing the `Client` website (does not contain a `milestone-2` folder already) run:
 ```bash
 git clone https://gitlab.csc.uvic.ca/courses/2022091/SENG350_COSI/assignments/jkonkin/milestone-2.git -b VicEventServer
