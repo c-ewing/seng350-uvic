@@ -22,7 +22,7 @@ function toggleButton(){
   if (localStorage.getItem("savedEventIds") === null) {
     localStorage.setItem("savedEventIds", JSON.stringify(savedEventIds))
   }
-  console.log("Hi")
+  
 }
 
 class SaveDelete extends Component {
