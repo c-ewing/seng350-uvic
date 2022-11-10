@@ -11,7 +11,6 @@ export default function Categories() {
         navigate(path);
     }
 
-
     return (
         <MDBContainer className="container py-5 h-100">
             <MDBTypography className="pb-2" tag="h4">Explore Categories</MDBTypography>
