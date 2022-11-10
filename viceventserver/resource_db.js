@@ -1,4 +1,4 @@
-const sqlite3 = require('sqlite3')
+const sqlite3 = require('sqlite3').verbose()
 
 // ## SQLITE QUERIES/DEFINITIONS
 // Check if the DB exists, if not set it up
@@ -20,6 +20,14 @@ const SELECT_TABLE_NAMES = "SELECT name FROM sqlite_schema \
 
 function SELECT_RANGE(table) {
     return `SELECT * FROM ${table} ORDER BY id LIMIT ? OFFSET ?`
+}
+
+function SELECT_WHERE(table, term, limit, offset) {
+    return `SELECT * FROM ${table} WHERE title LIKE ${term} OR shortDescription like ${term} ORDER BY id LIMIT ${limit} OFFSET ${offset}`
+}
+
+function SELECT_WHERE_ALL_TABLES(table, term, limit, offset) {
+    return `SELECT * FROM ${table} WHERE title LIKE ${term} OR shortDescription like ${term}`
 }
 
 function CREATE_TABLE(value) {
@@ -82,14 +90,14 @@ function insert_data(table, id, title, startDate, endDate, shortDescription, lon
 function select_by_range(table, start, end) {
     let offset = start
     // Limit the number of returned results to MAX_NUM_RESULTS
-    let limit = Math.min(MAX_NUM_RESULTS, start-end)
+    let limit = Math.min(MAX_NUM_RESULTS, start - end)
 
     return new Promise((resolve, reject) => {
-        DATABASE.all(SELECT_RANGE(table), [limit, offset], (err, rows) =>{
+        DATABASE.all(SELECT_RANGE(table), [limit, offset], (err, rows) => {
             if (err) {
                 console.error(`Failed to fetch rows: ${start}-${end} from ${table}:\n${err}`)
                 reject(err)
-            } else{
+            } else {
                 resolve(rows)
             }
         })
@@ -114,6 +122,61 @@ function select_by_id(table, id) {
 
 }
 
+function select_where(term, table, start, end) {
+    let offset = start
+    let limit = Math.min(MAX_NUM_RESULTS, end - start)
+    let wildcarded_term = `'%${term}%'`
+
+    // Build the statement, SQLite substitution would be better.. but i can't seem to get it to work...
+    let statement = SELECT_WHERE(table, wildcarded_term, limit, offset)
+
+    console.debug(statement)
+
+    return new Promise((resolve, reject) => {
+        DATABASE.all(statement, (err, rows) => {
+            if (err) {
+                console.error(`Failed to search for: ${term} from ${table}:\n${err}`)
+                reject(err)
+            } else {
+                console.log(rows)
+                resolve(rows)
+            }
+        })
+    })
+}
+
+function select_where_all_tables(term, tables, start, end) {
+    let offset = start
+    let limit = Math.min(MAX_NUM_RESULTS, end - start)
+    let wildcarded_term = `'%${term}%'`
+
+    // Build the statement, for each table to search UNION the search statements
+    let statement = ''
+
+    for (let i = 0; i < tables.length - 1; i++) {
+        statement += SELECT_WHERE_ALL_TABLES(tables[i], wildcarded_term) + " UNION "
+    }
+    statement += SELECT_WHERE_ALL_TABLES(tables[tables.length - 1], wildcarded_term)
+    // Add ordering and limiting
+    statement += ` ORDER BY id LIMIT ${limit} OFFSET ${offset}`
+
+
+    console.debug(statement)
+
+    // TODO: Support searching all tables
+    return new Promise((resolve, reject) => {
+        DATABASE.all(statement, (err, rows) => {
+            if (err) {
+                console.error(`Failed to search for: ${term} from ${tables}:\n${err}`)
+                reject(err)
+            } else {
+                console.log(rows)
+                resolve(rows)
+            }
+        })
+    })
+}
+
 // ## Init DB:
 function check_db_structure() {
     // Check if all of the TABLES exist. If not, this is first startup, create them.
@@ -127,5 +190,7 @@ module.exports = {
     check_db_structure,
     insert_data,
     select_by_id,
-    select_by_range
+    select_by_range,
+    select_where,
+    select_where_all_tables
 }

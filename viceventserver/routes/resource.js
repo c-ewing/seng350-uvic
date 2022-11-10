@@ -61,7 +61,7 @@ const get_resource_by_id = function (req, res) {
   })
 }
 
-// # GET resource
+// # GET Routes
 // First filter bad requests, then handle valid resource listing requests
 router.get('/resources/:resourceType/', [filter_resource, browse_resource_range])
 router.get('/resources/:resourceType/id/:id', [filter_resource, get_resource_by_id])
@@ -74,4 +74,5 @@ router.post('/submit', (req, res) => {
   res.send("Unimplemented").end()
 })
 
+// # Exports
 module.exports = router;

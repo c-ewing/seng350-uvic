@@ -2,11 +2,12 @@ var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var compression = require('compression');
+var cors = require('cors')
 var db = require('./resource_db.js');
 
 // Routes
 var resourceRouter = require('./routes/resource')
-//var searchRouter = require('./routes/search')
+var searchRouter = require('./routes/search')
 
 // Initialize the Database:
 db.check_db_structure()
@@ -20,14 +21,14 @@ var app = express();
 
 // Apply compression to responses
 app.use(compression())
-
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Attach the route handlers to the URIs
 app.use('/', resourceRouter);
-//app.use('/search', searchRouter);
+app.use('/', searchRouter);
 
 // ## Exports
 module.exports = app;
