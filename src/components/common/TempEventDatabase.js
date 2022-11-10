@@ -30,10 +30,25 @@ let events = [{
       "shortDescription":    "short description",
       "longDescription":     "long description",
       "image":                "" 
-  }]
+  },{
+    "id":                   "e1", 
+    "title":                "Concert",
+    "startdate":          "November 5th", 
+    "endDate":             "November 6th",
+    "shortDescription":    "short description",
+    "longDescription":     "long description",
+    "image":                "" 
+},{
+  "id":                   "e2", 
+  "title":                "Play",
+  "startdate":          "November 5th", 
+  "endDate":             "November 6th",
+  "shortDescription":    "short description",
+  "longDescription":     "This is a play located downtown Victoria",
+  "image":                "" 
+}]
 
 export default function TempEventDatabase() {
-
   return (
     events
   )
