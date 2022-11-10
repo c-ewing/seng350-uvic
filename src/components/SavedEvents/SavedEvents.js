@@ -12,43 +12,36 @@ import {
 import {useState} from 'react';
 import { Button } from 'react-bootstrap';
 import Event from '../common/Event'
-import SportsTeams from '../common/TempEvents/SportsTeams'
-import Restaurants from '../common/TempEvents/Restaurants'
-import DegreeSpecificOpportunities from '../common/TempEvents/DegreeSpecificOpportunities'
-import Events from '../common/TempEvents/Events'
-import JobOpportunities from '../common/TempEvents/JobOpportunities'
-import SchoolClubs from '../common/TempEvents/SchoolClubs'
-import VictoriaResources from '../common/TempEvents/VictoriaResources'
+import TempEvents from '../common/TempEventDatabase'
 
-// fetch('http://localhost:3000/resources/<SportsTeams>')
-//         .then(response => response.json())
-//         .then(data => console.log(data));
+const containerStyle = {
+    display: "flex",
+    flexFlow: "row wrap",
+}
 
-// hard coded events, will pull from server in future
+const childStyle = {
+    width: "400px",
+    margin: " 10px auto",
+}
+
+// async function fetchJSON() {
+//     const response = await fetch('http://localhost:3000/resources/SportsTeams')
+//     const json = response.json()
+//     return json
+// }
+
+// fetchJSON().then((json) => {
+//     console.log(json)
+// })
 
 export default function SavedEvents() {
-    console.log(SportsTeams)
-    if(SportsTeams().length + Restaurants().length + SchoolClubs().length + Events().length + VictoriaResources().length + DegreeSpecificOpportunities().length + JobOpportunities().length == 0) {
-        return (
-            <>
-                <h1>Hey, you haven't saved any events yet. Check out the Explore Page to find some</h1>
-            </>
-        )
-    }else {
-        return (
-            <>
-                <h1>Saved Events</h1>
-                <EventType value={SportsTeams()} name={"Sports Teams"} />
-                <EventType value={Restaurants()} name={"Restaurants"}/>
-                <EventType value={SchoolClubs()} name={"School Clubs"}/>
-                <EventType value={Events()} name={"Events"}/>
-                <EventType value={VictoriaResources()} name={"VicResources"}/>
-                <EventType value={DegreeSpecificOpportunities()} name={"DegSpecificOps"}/>
-                <EventType value={JobOpportunities()} name={"JobOps"}/>
-            </>
-        )
-    }
-    
+    return (
+        <>  
+            <h1>Temp list of all events</h1>
+            <EventType value={TempEvents()} name={"Events"}/>
+            <SavedEvent value={TempEvents()} />
+        </>
+    )   
 }
 
 function EventType({ value, name, children, ...props }){
@@ -61,7 +54,8 @@ function EventType({ value, name, children, ...props }){
                     <h1>{name}</h1>
                 </Button>
                 <MDBCollapse show={showFirstElement} className='mt-3'>
-                    {value.map(item => <Event 
+                    {value.map(item => <Event
+                    id={item.id} 
                     title={item.title} 
                     startDate = {item.startdate}
                     endDate = {item.endDate}
@@ -79,32 +73,33 @@ function EventType({ value, name, children, ...props }){
     } 
 }
 
-function RecentlyDeleted({value, name, children, ...props}){
-    const [showFirstElement, setShowFirstElement] = useState(false);
-    const toggleFirstElement = () => setShowFirstElement(!showFirstElement);
-    if(value.length != 0){
-        return (
-            <div style={{}}>
-                <Button style={{margin: 10}} onClick={toggleFirstElement}>
-                    <h1>{name}</h1>
-                </Button>
-                <MDBCollapse show={showFirstElement} className='mt-3'>
-                    {value.map(item => <Event 
-                    title={item.title} 
-                    startDate = {item.startdate}
-                    endDate = {item.endDate}
-                    shortDescription = {item.shortDescription}
-                    longDescription = {item.longDescription}
-                    image={item.image}
+function SavedEvent({ value, name, children, ...props }){
+    let saved = []
+    var savedEvents = localStorage.getItem('savedEventIds')
+    var e = JSON.parse(savedEvents);
+    for(let i = 0; i < e.IDs.length; i++){
+        for(let j = 0; j < value.length; j++){
+            if(e.IDs[i] == value[j].id){
+                saved.push(value[j]) 
+            }
+        }
+    }
+    return (
+        <>
+            <h1>Saved Events</h1>
+            <div style={containerStyle}>
+                <div style={childStyle}>
+                    {saved.map(item => <Event
+                        id={item.id} 
+                        title={item.title} 
+                        startDate = {item.startdate}
+                        endDate = {item.endDate}
+                        shortDescription = {item.shortDescription}
+                        longDescription = {item.longDescription}
+                        image={item.image}
                     ></Event>)}
-                </MDBCollapse>
+                </div>
             </div>
-        ) 
-    }else {
-        return (
-            <p></p>
-        )
-    } 
+        </>
+    )
 }
-
-
