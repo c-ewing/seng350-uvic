@@ -37,7 +37,7 @@ const childStyle = {
 export default function SavedEvents() {
     return (
         <>  
-            <h1>Temp list of all events</h1>
+            
             <EventType value={TempEvents()} name={"Events"}/>
             <SavedEvent value={TempEvents()} />
         </>
@@ -49,7 +49,8 @@ function EventType({ value, name, children, ...props }){
     const toggleFirstElement = () => setShowFirstElement(!showFirstElement);
     if(value.length != 0){
         return (
-            <div style={{}}>
+            <div style={{border: "1px solid black", margin: "10px"}}>
+                <h1>Temp list of all events</h1>
                 <Button style={{margin: 10}} onClick={toggleFirstElement}>
                     <h1>{name}</h1>
                 </Button>
@@ -83,6 +84,11 @@ function SavedEvent({ value, name, children, ...props }){
                 saved.push(value[j]) 
             }
         }
+    }
+    if(saved.length == 0){
+        return (
+            <h1>You currently have no Saved Events</h1>
+        )
     }
     return (
         <>
