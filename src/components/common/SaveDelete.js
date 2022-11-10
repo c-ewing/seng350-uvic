@@ -18,12 +18,13 @@ const savedEventIds = {
 
 export default function SaveDelete({ value, children, ...props }) {
   let id = value;
-  var clickState = localStorage.getItem('savedEventIds').includes(id) ? true: false;
-  let [isOff, setIsOff] = useState(!clickState);
-  
   if(localStorage.getItem('savedEventIds') == null){
     localStorage.setItem('savedEventIds', JSON.stringify(savedEventIds))
   }
+  var clickState = localStorage.getItem('savedEventIds').includes(id) ? true: false;
+  let [isOff, setIsOff] = useState(!clickState);
+  
+  
 
   const edit = () => {
     if(!isOff){
