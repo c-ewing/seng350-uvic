@@ -160,17 +160,12 @@ function select_where_all_tables(term, tables, start, end) {
     // Add ordering and limiting
     statement += ` ORDER BY id LIMIT ${limit} OFFSET ${offset}`
 
-
-    console.debug(statement)
-
-    // TODO: Support searching all tables
     return new Promise((resolve, reject) => {
         DATABASE.all(statement, (err, rows) => {
             if (err) {
                 console.error(`Failed to search for: ${term} from ${tables}:\n${err}`)
                 reject(err)
             } else {
-                console.log(rows)
                 resolve(rows)
             }
         })
