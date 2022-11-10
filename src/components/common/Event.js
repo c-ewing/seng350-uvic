@@ -44,7 +44,7 @@ class Event extends Component {
             <MDBCardTitle>
                 {this.props.title}
             </MDBCardTitle>
-            <SaveDelete />
+            <SaveDelete value={this.props.id} />
             <MDBCardText>
                 {this.props.startDate}
             </MDBCardText>

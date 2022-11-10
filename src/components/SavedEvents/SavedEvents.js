@@ -12,64 +12,36 @@ import {
 import {useState} from 'react';
 import { Button } from 'react-bootstrap';
 import Event from '../common/Event'
+import TempEvents from '../common/TempEventDatabase'
 
+const containerStyle = {
+    display: "flex",
+    flexFlow: "row wrap",
+}
 
-// hard coded events, will pull from server in future
-const sportsTeams = [{
-    "id":                   "",
-    "title":                "Canucks",
-    "startdate":          "November 5th", 
-    "endDate":             "November 6th", 
-    "shortDescription":    "short description",
-    "longDescription":     "long description", 
-    "image":                "" 
-},{
-    "id":                   "", 
-    "title":                "Flames",
-    "startdate":          "November 5th", 
-    "endDate":             "November 6th",
-    "shortDescription":    "short description",
-    "longDescription":     "long description",
-    "image":                "" 
-}]
+const childStyle = {
+    width: "400px",
+    margin: " 10px auto",
+}
 
-const Restaurants = [{
-    "id":                   "",
-    "title":                "Mcdonalds",
-    "startdate":          "November 5th", 
-    "endDate":             "November 6th", 
-    "shortDescription":    "short description",
-    "longDescription":     "long description", 
-    "image":                "" 
-},{
-    "id":                   "", 
-    "title":                "Wendys",
-    "startdate":          "November 5th", 
-    "endDate":             "November 6th",
-    "shortDescription":    "short description",
-    "longDescription":     "long description",
-    "image":                "" 
-}]
+// async function fetchJSON() {
+//     const response = await fetch('http://localhost:3000/resources/SportsTeams')
+//     const json = response.json()
+//     return json
+// }
 
-const Clubs = []
-const Events = []
-const VicResources = []
-const DegSpecificOps = []
-const JobOps = []
+// fetchJSON().then((json) => {
+//     console.log(json)
+// })
 
 export default function SavedEvents() {
     return (
-        <>
-            <h1>Saved Events</h1>
-            <EventType value={sportsTeams} name={"Sports Teams"} />
-            <EventType value={Restaurants} name={"Restaurants"}/>
-            <EventType value={Clubs} name={"School Clubs"}/>
-            <EventType value={Events} name={"Events"}/>
-            <EventType value={VicResources} name={"VicResources"}/>
-            <EventType value={DegSpecificOps} name={"DegSpecificOps"}/>
-            <EventType value={JobOps} name={"JobOps"}/>
+        <>  
+            <h1>Temp list of all events</h1>
+            <EventType value={TempEvents()} name={"Events"}/>
+            <SavedEvent value={TempEvents()} />
         </>
-    )
+    )   
 }
 
 function EventType({ value, name, children, ...props }){
@@ -82,7 +54,8 @@ function EventType({ value, name, children, ...props }){
                     <h1>{name}</h1>
                 </Button>
                 <MDBCollapse show={showFirstElement} className='mt-3'>
-                    {value.map(item => <Event 
+                    {value.map(item => <Event
+                    id={item.id} 
                     title={item.title} 
                     startDate = {item.startdate}
                     endDate = {item.endDate}
@@ -97,6 +70,36 @@ function EventType({ value, name, children, ...props }){
         return (
             <p></p>
         )
+    } 
+}
+
+function SavedEvent({ value, name, children, ...props }){
+    let saved = []
+    var savedEvents = localStorage.getItem('savedEventIds')
+    var e = JSON.parse(savedEvents);
+    for(let i = 0; i < e.IDs.length; i++){
+        for(let j = 0; j < value.length; j++){
+            if(e.IDs[i] == value[j].id){
+                saved.push(value[j]) 
+            }
+        }
     }
-    
+    return (
+        <>
+            <h1>Saved Events</h1>
+            <div style={containerStyle}>
+                <div style={childStyle}>
+                    {saved.map(item => <Event
+                        id={item.id} 
+                        title={item.title} 
+                        startDate = {item.startdate}
+                        endDate = {item.endDate}
+                        shortDescription = {item.shortDescription}
+                        longDescription = {item.longDescription}
+                        image={item.image}
+                    ></Event>)}
+                </div>
+            </div>
+        </>
+    )
 }

@@ -2,12 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography } from 'mdb-react-ui-kit';
 
-
-
 export default function Profile() {
     let navigate = useNavigate(); 
     const routeChange = () => { 
         let path = `/Profile/EditProfile`; 
+        navigate(path);
+    }
+    const savedEventPage = () => {
+        let path = `/SavedEvents/SavedEvents`; 
         navigate(path);
     }
     const profile = localStorage.getItem('profile') ? JSON.parse(localStorage.getItem('profile')) : [];
@@ -68,15 +70,14 @@ export default function Profile() {
                                 </div>
                             </MDBCardBody>
                         </MDBCard>
-                        <MDBCard style={{ borderRadius: '15px', margin: '15px 0' }}>
+                        {/* <MDBCard style={{ borderRadius: '15px', margin: '15px 0' }}>
                             <MDBCardBody className="text-center">
                                 <MDBTypography tag="h4" className="mb-4">Your Saved Events</MDBTypography>
-                                <div className="mb-4 pb-2">
-                                </div>
+                                <Link to='src/components/SavedEvents/SavedEvents' > some stuff </Link>
+                                
                             </MDBCardBody>
-                        </MDBCard>
-                    </MDBCol>
-                    
+                        </MDBCard> */}
+                    </MDBCol>    
                 </MDBRow>
             </MDBContainer>
         </div>

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
     MDBCard,
     MDBCardBody,
@@ -12,20 +12,51 @@ import {
 import { Button } from 'react-bootstrap';
 import {useState} from 'react';
 
-class SaveDelete extends Component {
-  constructor(props) {
-    super(props);
-    this.props = props;
-    this.state = {}
-  }
-
-  render() {
-    return (
-      <>
-        <p>Save/Delete</p>
-      </>
-    )
-  }   
+const savedEventIds = {
+  "IDs": []
 }
 
-export default SaveDelete;
+export default function SaveDelete({ value, children, ...props }) {
+  let id = value;
+  var clickState = localStorage.getItem('savedEventIds').includes(id) ? true: false;
+  let [isOff, setIsOff] = useState(!clickState);
+  
+  if(localStorage.getItem('savedEventIds') == null){
+    localStorage.setItem('savedEventIds', JSON.stringify(savedEventIds))
+  }
+
+  const edit = () => {
+    if(!isOff){
+      var savedEvents = localStorage.getItem('savedEventIds') ? JSON.parse(localStorage.getItem('savedEventIds')) : [];
+
+      if(savedEvents.IDs.includes(id)) {
+        const index = savedEvents.IDs.indexOf(value);
+        if (index > -1) {
+          savedEvents.IDs.splice(index, 1);
+        }
+      }
+      else {
+
+      }
+      localStorage.setItem('savedEventIds', JSON.stringify(savedEvents));
+      window.location.reload(false);
+    }else {
+      var savedEvents = localStorage.getItem('savedEventIds') ? JSON.parse(localStorage.getItem('savedEventIds')) : [];
+
+      if(savedEvents.IDs.includes(id)) {
+      
+      }
+      else {
+        savedEvents.IDs.push(id)
+      }
+
+      localStorage.setItem('savedEventIds', JSON.stringify(savedEvents));
+      window.location.reload(false);
+    }
+    
+  }
+
+  return (
+    <Button onClick={() => {setIsOff(!isOff); edit()}}>{ isOff ? 'Save' : 'Remove' }</Button>
+  )
+};
