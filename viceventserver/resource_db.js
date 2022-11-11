@@ -76,6 +76,8 @@ function checkTables(err, rows) {
             console.info('Created Tables')
         }
     }
+
+    console.info('## Database Started ##')
 }
 
 // # DB Functions:
