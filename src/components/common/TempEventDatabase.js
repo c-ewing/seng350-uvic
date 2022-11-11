@@ -1,7 +1,7 @@
 let events = [{
     "id":                   "s1",
     "title":                "Canucks",
-    "startdate":          "November 5th", 
+    "startdate":          "November 5th",  
     "endDate":             "November 6th", 
     "shortDescription":    "short description",
     "longDescription":     "long description", 
