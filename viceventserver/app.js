@@ -43,5 +43,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', resourceRouter);
 app.use('/', searchRouter);
 
+console.log("## Server Started ##\n")
+
 // ## Exports
 module.exports = app;
