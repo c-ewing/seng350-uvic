@@ -39,6 +39,7 @@ html, body {
     align-items: stretch;
     gap: 2rem;
     padding: 0 1rem;
+    z-index: 100;
 }
 
 .nav ul {
@@ -162,4 +163,15 @@ main li {
 main li:hover {
     background-color: rgb(196, 196, 196);
 }
+
+.square-xl {
+    width: 200px !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    height: 100px !important;
+    text-align: center;
+    padding: 15px;
+    margin: 15px;
+    font-size: 15px;
+  }
 

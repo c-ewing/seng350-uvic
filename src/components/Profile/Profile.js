@@ -2,12 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography } from 'mdb-react-ui-kit';
 
-
-
 export default function Profile() {
     let navigate = useNavigate(); 
     const routeChange = () => { 
         let path = `/Profile/EditProfile`; 
+        navigate(path);
+    }
+    const savedEventPage = () => {
+        let path = `/SavedEvents/SavedEvents`; 
         navigate(path);
     }
     const profile = localStorage.getItem('profile') ? JSON.parse(localStorage.getItem('profile')) : [];
@@ -18,7 +20,7 @@ export default function Profile() {
 
     return (
         <div className="vh-100" style={{ backgroundColor: '#eee'}}>
-            <MDBContainer className="container py-5 h-100">
+            <MDBContainer className="container py-3 h-100">
                 <MDBTypography className="mb-4 pb-2" tag="h1">My Profile</MDBTypography>
                 <MDBRow className="justify-content-center align-items-left h-100">
                     <MDBCol md="12" xl="4">
@@ -68,17 +70,14 @@ export default function Profile() {
                                 </div>
                             </MDBCardBody>
                         </MDBCard>
-                    </MDBCol>
-                    <MDBCol md="12" xl="7">
-                        <MDBCard style={{ borderRadius: '15px' }}>
+                        {/* <MDBCard style={{ borderRadius: '15px', margin: '15px 0' }}>
                             <MDBCardBody className="text-center">
                                 <MDBTypography tag="h4" className="mb-4">Your Saved Events</MDBTypography>
-                                <div className="mb-4 pb-2">
+                                <Link to='src/components/SavedEvents/SavedEvents' > some stuff </Link>
                                 
-                                </div>
                             </MDBCardBody>
-                        </MDBCard>
-                    </MDBCol>
+                        </MDBCard> */}
+                    </MDBCol>    
                 </MDBRow>
             </MDBContainer>
         </div>
