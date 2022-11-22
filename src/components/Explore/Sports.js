@@ -64,8 +64,7 @@ function EventType({ value, name, children, ...props }){
             )   
         }
     }
-   
-   
+
     if(value.length != 0){
         
         return (
@@ -85,4 +84,3 @@ function EventType({ value, name, children, ...props }){
         )
     } 
 }
-

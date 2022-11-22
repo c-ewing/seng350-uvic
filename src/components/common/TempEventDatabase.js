@@ -1,3 +1,5 @@
+import {useState, useEffect} from 'react';
+
 let events = [{
     "id":                   "s1",
     "title":              "Vancouver Canucks vs Los Angeles Kings NHL Game",
@@ -49,6 +51,22 @@ let events = [{
 }]
 
 export default function TempEventDatabase() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    // fetch data
+    const dataFetch = async () => {
+    const data = await (
+      await fetch(
+        "http://localhost:3000/resources/Events")
+      ).json();
+      // set state when the data received
+      setData(data);
+    };
+
+    dataFetch();
+  }, []);
+
+  console.log(data)
   return (
     events
   )

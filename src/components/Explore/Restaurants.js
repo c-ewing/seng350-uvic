@@ -64,8 +64,7 @@ function EventType({ value, name, children, ...props }){
             )   
         }
     }
-   
-   
+
     if(value.length != 0){
         
         return (
@@ -74,7 +73,6 @@ function EventType({ value, name, children, ...props }){
                 <Button style={{margin: 10}} onClick={toggleFirstElement}>
                     <h1>{name}</h1>
                 </Button>
-               
                 <MDBCollapse show={showFirstElement} className='mt-3'>
                     {eventMap}
                 </MDBCollapse>

@@ -37,7 +37,6 @@ const childStyle = {
 export default function SavedEvents() {
     return (
         <>  
-            
             <SavedEvent value={TempEvents()} />
         </>
     )   

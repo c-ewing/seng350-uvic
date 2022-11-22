@@ -49,7 +49,6 @@ class Event extends Component {
             <MDBCardTitle>
                 {this.props.title}
             </MDBCardTitle>
-           
             <MDBCardText>
                 {this.props.startDate}
             </MDBCardText>
