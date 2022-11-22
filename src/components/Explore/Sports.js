@@ -35,7 +35,7 @@ const childStyle = {
 //     console.log(json)
 // })
 
-export default function SavedEvents() {
+export default function Sports() {
     return (
         <>  
             <EventType value={TempEvents()} name={"Sport Events"}/>

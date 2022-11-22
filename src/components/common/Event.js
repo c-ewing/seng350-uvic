@@ -13,6 +13,7 @@ import { Button } from 'react-bootstrap';
 import {useState} from 'react';
 import SaveDelete from './SaveDelete'
 
+
 function LongDescription({value, children, ...props }){
   const [showFirstElement, setShowFirstElement] = useState(false);
   const toggleFirstElement = () => setShowFirstElement(!showFirstElement);
@@ -34,6 +35,20 @@ function LongDescription({value, children, ...props }){
   )
 }
 
+class Styling {
+  fontsize;
+  fontstyle;
+  fontweight;
+  constructor (size, style, weight ) {
+      this.fontsize = size;
+      this.fontstyle = style;
+      this.fontweight = weight;
+  }
+}
+var eventTitleStyling = new Styling(40, "italic", "bold");
+
+
+
 class Event extends Component {
 
   constructor(props) {
@@ -42,11 +57,12 @@ class Event extends Component {
     this.state = {}
   }
 
+
   render() {
     return (
       <MDBCard style={{margin: 10}}>
         <MDBCardBody>
-            <MDBCardTitle>
+            <MDBCardTitle style={{fontSize:eventTitleStyling.fontsize, fontStyle:eventTitleStyling.fontstyle, fontWeight:eventTitleStyling.fontweight}  }>
                 {this.props.title}
             </MDBCardTitle>
             <MDBCardText>

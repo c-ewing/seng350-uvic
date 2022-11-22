@@ -7,7 +7,7 @@ import TempEvents from '../common/TempEventDatabase'
 import { FaSdCard } from 'react-icons/fa';
 
 
-export default function SavedEvents() {
+export default function Events() {
     return (
         <>  
             <EventType value={TempEvents()} name={"Events"}/>  
