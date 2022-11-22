@@ -32,7 +32,7 @@ The `TYPE` of resource being queried is defined as follows and is **required** f
 ---
 
 ## `Search` Requests:
-The `TERM` is required and is a string to search for within the `Resources`
+The `TERM` is required and is a string to search for within the `Resources`. `TERM` can be a comma separated string of multiple terms to search for, such as `uvic,club`. The results will contain results that have either `uvic` or `clubs` in them.
 
 **Optionally** following the `TERM` are parameters `TYPE` (as above) and `START`/`END` (indicating a slice of results)
 

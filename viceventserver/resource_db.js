@@ -26,8 +26,26 @@ function SELECT_WHERE(table, term, limit, offset) {
     return `SELECT * FROM ${table} WHERE title LIKE ${term} OR shortDescription like ${term} ORDER BY id LIMIT ${limit} OFFSET ${offset}`
 }
 
-function SELECT_WHERE_ALL_TABLES(table, term, limit, offset) {
+function SELECT_WHERE_MULTIPLE_TERMS(table, terms, limit, offset) {
+    let query = `SELECT * FROM ${table} WHERE `
+    for (let i = 0; i < terms.length - 1; i++) {
+        query += `title LIKE ${terms[i]} OR shortDescription like ${terms[i]} OR `
+    }
+    query += `title LIKE ${terms[terms.length - 1]} OR shortDescription like ${terms[terms.length - 1]} ORDER BY id LIMIT ${limit} OFFSET ${offset}`
+    return query
+}
+
+function SELECT_WHERE_ALL_TABLES(table, term) {
     return `SELECT * FROM ${table} WHERE title LIKE ${term} OR shortDescription like ${term}`
+}
+
+function SELECT_WHERE_ALL_TABLES_MULTIPLE_TERMS(table, terms) {
+    let query = `SELECT * FROM ${table} WHERE `
+    for (let i = 0; i < terms.length - 1; i++) {
+        query += `title LIKE ${terms[i]} OR shortDescription like ${terms[i]} OR `
+    }
+    query += `title LIKE ${terms[terms.length - 1]} OR shortDescription like ${terms[terms.length - 1]}`
+    return query
 }
 
 function CREATE_TABLE(value) {
@@ -147,6 +165,26 @@ function select_where(term, table, start, end) {
     })
 }
 
+function select_where_multiple_terms(term, table, start, end) {
+    let offset = start
+    let limit = Math.min(MAX_NUM_RESULTS, end - start)
+    let wildcarded_terms = term.map(t => `'%${t}%'`)
+
+    // Build the statement, SQLite substitution would be better.. but i can't seem to get it to work...
+    let statement = SELECT_WHERE_MULTIPLE_TERMS(table, wildcarded_terms, limit, offset)
+
+    return new Promise((resolve, reject) => {
+        DATABASE.all(statement, (err, rows) => {
+            if (err) {
+                console.error(`Failed to search for: ${term} from ${table}:\n${err}`)
+                reject(err)
+            } else {
+                resolve(rows)
+            }
+        })
+    })
+}
+
 function select_where_all_tables(term, tables, start, end) {
     let offset = start
     let limit = Math.min(MAX_NUM_RESULTS, end - start)
@@ -158,7 +196,36 @@ function select_where_all_tables(term, tables, start, end) {
     for (let i = 0; i < tables.length - 1; i++) {
         statement += SELECT_WHERE_ALL_TABLES(tables[i], wildcarded_term) + " UNION "
     }
+
     statement += SELECT_WHERE_ALL_TABLES(tables[tables.length - 1], wildcarded_term)
+    // Add ordering and limiting
+    statement += ` ORDER BY id LIMIT ${limit} OFFSET ${offset}`
+
+    return new Promise((resolve, reject) => {
+        DATABASE.all(statement, (err, rows) => {
+            if (err) {
+                console.error(`Failed to search for: ${term} from ${tables}:\n${err}`)
+                reject(err)
+            } else {
+                resolve(rows)
+            }
+        })
+    })
+}
+
+function select_where_all_tables_multiple_terms(term, tables, start, end) {
+    let offset = start
+    let limit = Math.min(MAX_NUM_RESULTS, end - start)
+    let wildcarded_terms = term.map(t => `'%${t}%'`)
+
+    // Build the statement, for each table to search UNION the search statements
+    let statement = ''
+
+    for (let i = 0; i < tables.length - 1; i++) {
+        statement += SELECT_WHERE_ALL_TABLES_MULTIPLE_TERMS(tables[i], wildcarded_terms) + " UNION "
+    }
+
+    statement += SELECT_WHERE_ALL_TABLES_MULTIPLE_TERMS(tables[tables.length - 1], wildcarded_terms)
     // Add ordering and limiting
     statement += ` ORDER BY id LIMIT ${limit} OFFSET ${offset}`
 
@@ -189,5 +256,7 @@ module.exports = {
     select_by_id,
     select_by_range,
     select_where,
-    select_where_all_tables
+    select_where_multiple_terms,
+    select_where_all_tables,
+    select_where_all_tables_multiple_terms
 }

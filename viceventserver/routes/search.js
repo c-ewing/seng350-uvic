@@ -32,7 +32,15 @@ const search_by_term_with_resource = function (req, res) {
     return
   }
 
-  let rows_promise = db.select_where(term, table, start, end)
+  // Check if searching for multiple terms
+  let terms = term.split(',')
+  let rows_promise = ''
+  if (!Array.isArray(terms)) {
+    rows_promise = db.select_where(term, table, start, end)
+  } else {
+    rows_promise = db.select_where_multiple_terms(terms, table, start, end)
+  }
+
 
   rows_promise.then((rows) => {
     if (rows) {
@@ -54,7 +62,15 @@ const search_by_term_without_resource = function (req, res) {
   // Table is special as we want to limit the selectable tables
   let tables = db.TABLES
 
-  let rows_promise = db.select_where_all_tables(term, tables, start, end)
+
+  // Check if the search contains multiple terms:
+  let terms = term.split(',')
+  let rows_promise = ''
+  if (!Array.isArray(terms)) {
+    rows_promise = db.select_where_all_tables(terms, tables, start, end)
+  } else {
+    rows_promise = db.select_where_all_tables_multiple_terms(terms, tables, start, end)
+  }
 
   rows_promise.then((rows) => {
     if (rows) {
