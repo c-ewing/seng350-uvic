@@ -12,34 +12,16 @@ import {
 import {useState} from 'react';
 import { Button } from 'react-bootstrap';
 import Event from '../common/Event'
-import TempEvents from '../common/TempEventDatabase'
+import EventFetcher from '../common/EventFetcher'
 import { FaSdCard } from 'react-icons/fa';
 
-const containerStyle = {
-    display: "flex",
-    flexFlow: "row wrap",
-}
-
-const childStyle = {
-    width: "400px",
-    margin: " 10px auto",
-}
-
-// async function fetchJSON() {
-//     const response = await fetch('http://localhost:3000/resources/SportsTeams')
-//     const json = response.json()
-//     return json
-// }
-
-// fetchJSON().then((json) => {
-//     console.log(json)
-// })
 
 export default function Restaurants() {
+    let data = EventFetcher("http://localhost:3000/resources/Restaurants")
+    
     return (
         <>  
-            <EventType value={TempEvents()} name={"Restaurants"}/>
-            
+            <EventType value={data} name={"Restaurants"}/>
         </>
     )   
 }
@@ -47,12 +29,12 @@ export default function Restaurants() {
 function EventType({ value, name, children, ...props }){
     const [showFirstElement, setShowFirstElement] = useState(false);
     const toggleFirstElement = () => setShowFirstElement(!showFirstElement);
-
+    // console.log(value)
     let eventMap = new Map();
     for(var item = 0; item < value.length; item++) {
-        if(value[item].id[0] == "r") {
             eventMap.set(
-                <Event  
+                <Event
+                type={name}  
                 id={value[item].id} 
                 title={value[item].title} 
                 startDate = {value[item].startdate}
@@ -62,11 +44,9 @@ function EventType({ value, name, children, ...props }){
                 image={value[item].image}
                 ></Event>
             )   
-        }
     }
 
     if(value.length != 0){
-        
         return (
             <div style={{border: "1px solid black", margin: "10px"}}>
                 <h1>List of Events at Restaurants</h1>

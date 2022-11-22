@@ -79,7 +79,7 @@ class Event extends Component {
                 {this.props.image}
             </MDBCardText>
             <div > 
-            <SaveDelete value={this.props.id} />
+            <SaveDelete value={[this.props.id, this.props.type]} />
             </div>
         </MDBCardBody>
     </MDBCard>

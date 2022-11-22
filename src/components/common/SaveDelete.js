@@ -17,44 +17,44 @@ const savedEventIds = {
 }
 
 export default function SaveDelete({ value, children, ...props }) {
-  let id = value;
+  let id = value[0];
+  
   if(localStorage.getItem('savedEventIds') == null){
     localStorage.setItem('savedEventIds', JSON.stringify(savedEventIds))
   }
+
   var clickState = localStorage.getItem('savedEventIds').includes(id) ? true: false;
   let [isOff, setIsOff] = useState(!clickState);
   
-  
-
   const edit = () => {
-    if(!isOff){
-      var savedEvents = localStorage.getItem('savedEventIds') ? JSON.parse(localStorage.getItem('savedEventIds')) : [];
+    var savedEvents = localStorage.getItem('savedEventIds') ? JSON.parse(localStorage.getItem('savedEventIds')) : [];
 
-      if(savedEvents.IDs.includes(id)) {
-        const index = savedEvents.IDs.indexOf(value);
-        if (index > -1) {
-          savedEvents.IDs.splice(index, 1);
+    if(!isOff){
+      for(let i = 0; i < savedEvents.IDs.length; i++){
+        if(savedEvents.IDs[i].includes(id)) {
+          console.log(i)
+          if (i > -1) {
+            savedEvents.IDs.splice(i, 1);
+          }
+        }
+        else {
         }
       }
-      else {
 
-      }
-      localStorage.setItem('savedEventIds', JSON.stringify(savedEvents));
-      window.location.reload(false);
     }else {
-      var savedEvents = localStorage.getItem('savedEventIds') ? JSON.parse(localStorage.getItem('savedEventIds')) : [];
-
-      if(savedEvents.IDs.includes(id)) {
-      
+      let flag  = 0;
+      for(let i = 0; i < savedEvents.IDs.length; i++){
+        if(savedEvents.IDs[i].includes(id)) {
+          flag = 1;
+        }
       }
-      else {
-        savedEvents.IDs.push(id)
+      if(flag == 0){
+        savedEvents.IDs.push(value)
       }
-
-      localStorage.setItem('savedEventIds', JSON.stringify(savedEvents));
-      window.location.reload(false);
     }
-    
+
+    localStorage.setItem('savedEventIds', JSON.stringify(savedEvents));
+    window.location.reload(false);
   }
 
   return (

@@ -12,34 +12,15 @@ import {
 import {useState} from 'react';
 import { Button } from 'react-bootstrap';
 import Event from '../common/Event'
-import TempEvents from '../common/TempEventDatabase'
+import EventFetcher from '../common/EventFetcher'
 import { FaSdCard } from 'react-icons/fa';
 
-const containerStyle = {
-    display: "flex",
-    flexFlow: "row wrap",
-}
-
-const childStyle = {
-    width: "400px",
-    margin: " 10px auto",
-}
-
-// async function fetchJSON() {
-//     const response = await fetch('http://localhost:3000/resources/SportsTeams')
-//     const json = response.json()
-//     return json
-// }
-
-// fetchJSON().then((json) => {
-//     console.log(json)
-// })
 
 export default function Sports() {
+    let data = EventFetcher("http://localhost:3000/resources/SportsTeams")
     return (
         <>  
-            <EventType value={TempEvents()} name={"Sport Events"}/>
-            
+            <EventType value={data} name={"SportTeams"}/>
         </>
     )   
 }
@@ -50,19 +31,18 @@ function EventType({ value, name, children, ...props }){
 
     let eventMap = new Map();
     for(var item = 0; item < value.length; item++) {
-        if(value[item].id[0] == "s") {
-            eventMap.set(
-                <Event  
-                id={value[item].id} 
-                title={value[item].title} 
-                startDate = {value[item].startdate}
-                endDate = {value[item].endDate}
-                shortDescription = {value[item].shortDescription}
-                longDescription = {value[item].longDescription}
-                image={value[item].image}
-                ></Event>
-            )   
-        }
+        eventMap.set(
+            <Event  
+            type={name}
+            id={value[item].id} 
+            title={value[item].title} 
+            startDate = {value[item].startdate}
+            endDate = {value[item].endDate}
+            shortDescription = {value[item].shortDescription}
+            longDescription = {value[item].longDescription}
+            image={value[item].image}
+            ></Event>
+        )   
     }
 
     if(value.length != 0){
