@@ -56,7 +56,8 @@ function CREATE_TABLE(value) {
     endDate TEXT, 
     shortDescription TEXT, 
     longDescription, 
-    image TEXT 
+    image TEXT,
+    UNIQUE(title, startDate, endDate, shortDescription, longDescription, image) 
     )`
 }
 
