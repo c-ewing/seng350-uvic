@@ -67,12 +67,5 @@ router.get('/resources/:resourceType/', [filter_resource, browse_resource_range]
 router.get('/resources/:resourceType/id/:id', [filter_resource, get_resource_by_id])
 router.get('/resources/:resourceType/range/:start(\\d+)-:end(\\d+)', [filter_resource, browse_resource_range])
 
-/* POST request. */
-// Handle event suggestions
-router.post('/submit', (req, res) => {
-  res.status(418)
-  res.send("Unimplemented").end()
-})
-
 // # Exports
 module.exports = router;
