@@ -101,10 +101,16 @@ function checkTables(err, rows) {
 
 // # DB Functions:
 function insert_data(table, id, title, startDate, endDate, shortDescription, longDescription, image) {
-    DATABASE.run(INSERT_DATA(table), [id, title, startDate, endDate, shortDescription, longDescription, image], (err) => {
-        if (err) {
-            console.error(`Error inserting: [${[id, title, startDate, endDate, shortDescription, longDescription, image]}] into table:  ${table}.\nDue to: ${err}`)
-        }
+    return new Promise((resolve, reject) => {
+
+        DATABASE.run(INSERT_DATA(table), [id, title, startDate, endDate, shortDescription, longDescription, image], (err) => {
+            if (err) {
+                console.error(`Error inserting: [${[id, title, startDate, endDate, shortDescription, longDescription, image]}] into table: ${table}.\n${err}`)
+                reject(err)
+            } else {
+                resolve()
+            }
+        })
     })
 }
 

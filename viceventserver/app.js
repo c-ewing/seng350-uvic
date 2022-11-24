@@ -8,6 +8,7 @@ var db = require('./resource_db.js');
 // Routes
 var resourceRouter = require('./routes/resource')
 var searchRouter = require('./routes/search')
+var requestRouter = require('./routes/request')
 
 // Initialize the Database:
 db.check_db_structure()
@@ -42,6 +43,7 @@ app.use(express.urlencoded({ extended: false }));
 // Attach the route handlers to the URIs
 app.use('/', resourceRouter);
 app.use('/', searchRouter);
+app.use('/', requestRouter)
 
 console.log("## Server Started ##\n")
 
