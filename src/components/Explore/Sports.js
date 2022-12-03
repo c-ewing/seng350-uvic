@@ -1,39 +1,23 @@
-import React, { Component } from 'react';
-import {
-    MDBCard,
-    MDBCardBody,
-    MDBCardTitle,
-    MDBCardText,
-    MDBRow,
-    MDBCol,
-    MDBBtn,
-    MDBCollapse
-} from 'mdb-react-ui-kit';
-import {useState} from 'react';
-import { Button } from 'react-bootstrap';
+import React from 'react';
 import Event from '../common/Event'
 import EventFetcher from '../common/EventFetcher'
-import { FaSdCard } from 'react-icons/fa';
-
 
 export default function Sports() {
     let data = EventFetcher("http://localhost:3000/resources/SportsTeams")
     return (
         <>  
-            <EventType value={data} name={"SportTeams"}/>
+            <EventType value={data} name={"SportsTeams"}/>
         </>
     )   
 }
 
 function EventType({ value, name, children, ...props }){
-    const [showFirstElement, setShowFirstElement] = useState(false);
-    const toggleFirstElement = () => setShowFirstElement(!showFirstElement);
-
     let eventMap = new Map();
+
     for(var item = 0; item < value.length; item++) {
         eventMap.set(
             <Event  
-            type={name}
+            type={value[item].type}  
             id={value[item].id} 
             title={value[item].title} 
             startDate = {value[item].startdate}
@@ -45,17 +29,11 @@ function EventType({ value, name, children, ...props }){
         )   
     }
 
-    if(value.length != 0){
-        
+    if(value.length != 0){   
         return (
-            <div style={{border: "1px solid black", margin: "10px"}}>
-                <h1>List of All Sport Events</h1>
-                <Button style={{margin: 10}} onClick={toggleFirstElement}>
-                    <h1>{name}</h1>
-                </Button>
-                <MDBCollapse show={showFirstElement} className='mt-3'>
-                    {eventMap}
-                </MDBCollapse>
+            <div style={{margin: "10px"}}>
+                <h1>Sport Events</h1>
+                {eventMap}
             </div>
         ) 
     }else {

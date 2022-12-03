@@ -2,11 +2,11 @@ import React from 'react';
 import Event from '../common/Event'
 import EventFetcher from '../common/EventFetcher'
 
-export default function Restaurants() {
-    let data = EventFetcher("http://localhost:3000/resources/Restaurants")
+export default function Jobs() {
+    let data = EventFetcher("http://localhost:3000/resources/JobOpportunities")
     return (
         <>  
-            <EventType value={data} name={"Restaurants"}/>
+            <EventType value={data} name={"JobOpportunities"}/>
         </>
     )   
 }
@@ -32,13 +32,13 @@ function EventType({ value, name, children, ...props }){
     if(value.length != 0){
         return (
             <div style={{margin: "10px"}}>
-                <h1>Restaurants</h1>
+                <h1>Jobs</h1>
                 {eventMap}
             </div>
         ) 
     }else {
         return (
-            <p></p>
+            <p>No Events Added Yet</p>
         )
     } 
 }

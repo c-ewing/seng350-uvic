@@ -33,6 +33,7 @@ export default function SavedEvents() {
 
     for(let i = 0; i < e.IDs.length; i++){
         data = EventFetcher("http://localhost:3000/resources/"+e.IDs[i][1]+"/id/"+e.IDs[i][0])
+        // data = EventFetcher("http://localhost:3000/resources/"+e.IDs[i][1])
         console.log(data)
         saved.push(data)
     }
@@ -56,6 +57,7 @@ export default function SavedEvents() {
                         shortDescription = {item.shortDescription}
                         longDescription = {item.longDescription}
                         image={item.image}
+                        saved={true}
                     ></Event>)}
                 </div>
             </div>
@@ -91,6 +93,7 @@ function SavedEvent({ value, name, children, ...props }){
             <div style={containerStyle}>
                 <div style={childStyle}>
                     {saved.map(item => <Event
+                        type={item.type}
                         id={item.id} 
                         title={item.title} 
                         startDate = {item.startdate}

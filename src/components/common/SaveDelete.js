@@ -23,9 +23,26 @@ export default function SaveDelete({ value, children, ...props }) {
     localStorage.setItem('savedEventIds', JSON.stringify(savedEventIds))
   }
 
-  var clickState = localStorage.getItem('savedEventIds').includes(id) ? true: false;
-  let [isOff, setIsOff] = useState(!clickState);
+  var eventObject = localStorage.getItem('savedEventIds') ? JSON.parse(localStorage.getItem('savedEventIds')) : [];
+
+  var clickState
+  clickState = false
+
+  for(let i = 0; i < eventObject.IDs.length; i++){
+
+    if(eventObject.IDs[i].includes(id)) {
+      clickState = true
+    }
+  }
+
+  if(value[2] == true){
+    clickState = !clickState
+  }
+
   
+
+  let [isOff, setIsOff] = useState(!clickState);
+
   const edit = () => {
     var savedEvents = localStorage.getItem('savedEventIds') ? JSON.parse(localStorage.getItem('savedEventIds')) : [];
 
