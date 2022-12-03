@@ -17,7 +17,7 @@ function EventType({ value, name, children, ...props }){
     for(var item = 0; item < value.length; item++) {
         eventMap.set(
             <Event
-            type={value[item].type}  
+            type={name}  
             id={value[item].id} 
             title={value[item].title} 
             startDate = {value[item].startDate}
