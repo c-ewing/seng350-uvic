@@ -14,6 +14,7 @@ import {
   Routes
 } from "react-router-dom"
 import EditProfile from './Profile/EditProfile/EditProfile'
+import Recommendations from './Explore/Recommendations/Recommendations'
 
 export const ExploreVicWebsite = () => {
     return <>
@@ -30,6 +31,7 @@ export const ExploreVicWebsite = () => {
         <Route path="/explore/events" element={<Events />} />
         <Route path="/explore/sports" element={<Sports />} />
         <Route path="/explore/restaurants" element={<Restaurants />} />
+        <Route path="/explore/recommendations" element={<Recommendations />} />
       </Routes>
     </div>
     <Footer />

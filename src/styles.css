@@ -171,7 +171,17 @@ main li:hover {
     height: 100px !important;
     text-align: center;
     padding: 15px;
-    margin: 15px;
+    margin: 10px;
     font-size: 15px;
   }
 
+.square-xxl {
+    width: 640px !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    height: 100px !important;
+    text-align: center;
+    padding: 15px;
+    margin: 15px;
+    font-size: 22px;
+}
