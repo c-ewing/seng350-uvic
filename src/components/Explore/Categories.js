@@ -10,13 +10,16 @@ export default function Categories() {
     const routeChange = (path) => { 
         navigate(path);
     }
+    const routeChangeJobs = () => { 
+        navigate('/explore/Jobs.js');
+    }
 
     return (
         <MDBContainer className="container py-5 h-100">
             <MDBTypography className="pb-2" tag="h4">Explore Categories</MDBTypography>
             <MDBCol>
                 <MDBCol>
-                    <MDBBtn onClick={() => routeChange('/explore/events')} color="outline-primary" className="square-xl">
+                    <MDBBtn onClick={() => routeChange('/Explore/Events')} color="outline-primary" className="square-xl">
                         <BsCalendarCheck size={50} />
                         <MDBRow className="justify-content-center align-items-center h-50">
                             EVENTS
@@ -48,7 +51,7 @@ export default function Categories() {
                             LEARNING OPPORTUNITIES
                         </MDBRow>
                     </MDBBtn>
-                    <MDBBtn onClick={() => routeChange('/explore/jobs')} color="outline-primary" className="square-xl">
+                    <MDBBtn onClick={() => routeChangeJobs()} color="outline-primary" className="square-xl">
                         <BsBriefcase size={50} />
                         <MDBRow className="justify-content-center align-items-center h-50">
                             JOBS
