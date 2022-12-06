@@ -39,6 +39,10 @@ function SELECT_WHERE_ALL_TABLES(table, term) {
     return `SELECT * FROM ${table} WHERE title LIKE ${term} OR shortDescription like ${term}`
 }
 
+function SELECT_WHERE_ID_TABLES(table, id) {
+    return `SELECT * FROM ${table} WHERE id = ${id}`
+}
+
 function SELECT_WHERE_ALL_TABLES_MULTIPLE_TERMS(table, terms) {
     let query = `SELECT * FROM ${table} WHERE `
     for (let i = 0; i < terms.length - 1; i++) {
@@ -131,7 +135,31 @@ function select_by_range(table, start, end) {
     })
 }
 
-function select_by_id(table, id) {
+function select_by_id(id) {
+    // Because the query is async we need to *promise* to return something in the future
+    // and then on the callers side, wait for the promise to be completed. When that happens we can pull the
+    // value out
+    // from: https://kudadam.com/blog/return-data-from-sqlite3-nodejs
+
+    let query = ''
+    for (i = 0; i < TABLES.length - 1; i += 1) {
+        query += `SELECT * FROM ${TABLES[i]} WHERE id = "${id}" UNION `
+    }
+    query += `SELECT * FROM ${TABLES[TABLES.length - 1]} WHERE id = "${id}"`
+
+    return new Promise((resolve, reject) => {
+        DATABASE.get(query, (err, row) => {
+            if (err) {
+                console.error(`Failed to get ${id} in ${TABLES.toString()}:\n${err}`)
+                reject(err)
+            } else {
+                resolve(row)
+            }
+        })
+    })
+}
+
+function select_by_type_and_id(table, id) {
     // Because the query is async we need to *promise* to return something in the future
     // and then on the callers side, wait for the promise to be completed. When that happens we can pull the
     // value out
@@ -146,7 +174,6 @@ function select_by_id(table, id) {
             }
         })
     })
-
 }
 
 function select_where(term, table, start, end) {
@@ -261,6 +288,7 @@ module.exports = {
     check_db_structure,
     insert_data,
     select_by_id,
+    select_by_type_and_id,
     select_by_range,
     select_where,
     select_where_multiple_terms,

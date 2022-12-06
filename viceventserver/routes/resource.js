@@ -48,8 +48,21 @@ const browse_resource_range = function (req, res) {
   })
 }
 
-const get_resource_by_id = function (req, res) {
+const get_resource_by_type_and_id = function (req, res) {
   let row_promise = db.select_by_id(req.params.resourceType, req.params.id)
+
+  row_promise.then((row) => {
+    if (row) {
+      res.json(row)
+    } else {
+      res.status(404)
+      res.send("Unknown Event ID: " + req.params.id)
+    }
+  })
+}
+
+const get_resource_by_id = function (req, res) {
+  let row_promise = db.select_by_id(req.params.id)
 
   row_promise.then((row) => {
     if (row) {
@@ -64,7 +77,8 @@ const get_resource_by_id = function (req, res) {
 // # GET Routes
 // First filter bad requests, then handle valid resource listing requests
 router.get('/resources/:resourceType/', [filter_resource, browse_resource_range])
-router.get('/resources/:resourceType/id/:id', [filter_resource, get_resource_by_id])
+router.get('/resources/:resourceType/id/:id', [filter_resource, get_resource_by_type_and_id])
+router.get('/resources/id/:id', [get_resource_by_id])
 router.get('/resources/:resourceType/range/:start(\\d+)-:end(\\d+)', [filter_resource, browse_resource_range])
 
 // # Exports

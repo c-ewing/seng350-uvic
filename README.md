@@ -6,6 +6,7 @@
 Data can be requested from the server using a `get` request following the formats:
 
 ```
+baseurl/resources/id/<ID>
 baseurl/resources/<TYPE>/id/[ID]
 baseurl/resources/<TYPE>/range/[START-END]
 baseurl/search/<TERM>/[TYPE#START-END]
