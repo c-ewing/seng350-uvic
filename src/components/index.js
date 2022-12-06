@@ -14,10 +14,12 @@ import {
   Routes
 } from "react-router-dom"
 import EditProfile from './Profile/EditProfile/EditProfile'
+import SearchResults from './Explore/SearchResults'
 import Recommendations from './Explore/Recommendations'
 
 export const ExploreVicWebsite = () => {
-    return <>
+
+  return <>
     <Navbar />
     <div className='container'>
       <Routes>
@@ -31,6 +33,7 @@ export const ExploreVicWebsite = () => {
         <Route path="/explore/events" element={<Events />} />
         <Route path="/explore/sports" element={<Sports />} />
         <Route path="/explore/restaurants" element={<Restaurants />} />
+        <Route path="/explore/search-results" element={<SearchResults />} />
         <Route path="/explore/recommendations" element={<Recommendations />} />
       </Routes>
     </div>

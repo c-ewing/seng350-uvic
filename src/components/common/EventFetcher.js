@@ -1,5 +1,4 @@
 import {useState, useEffect} from 'react';
-import {React, Component} from 'react';
 
 export default function EventFetcher(value) {
   const [data, setData] = useState([]);
@@ -13,7 +12,7 @@ export default function EventFetcher(value) {
     };
 
     dataFetch();
-  }, []);
+  }, [value]);
 
   for(let i = 0; i < data.length; i++){
     // console.log(data[i])
