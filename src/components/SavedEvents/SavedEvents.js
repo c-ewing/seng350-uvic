@@ -1,16 +1,4 @@
-import React, { Component } from 'react';
-import {
-    MDBCard,
-    MDBCardBody,
-    MDBCardTitle,
-    MDBCardText,
-    MDBRow,
-    MDBCol,
-    MDBBtn,
-    MDBCollapse
-} from 'mdb-react-ui-kit';
-import {useState} from 'react';
-import { Button } from 'react-bootstrap';
+import React from 'react';
 import Event from '../common/Event'
 import EventFetcher from '../common/EventFetcher'
 
@@ -28,17 +16,16 @@ export default function SavedEvents() {
     let saved = []
     var savedEvents = localStorage.getItem('savedEventIds')
     var e = JSON.parse(savedEvents);
-    let eventID = ''
     let data = null
 
     for(let i = 0; i < e.IDs.length; i++){
-        data = EventFetcher("http://localhost:3000/resources/"+e.IDs[i][1]+"/id/"+e.IDs[i][0])
+        data = EventFetcher("http://localhost:3000/resources/id/"+e.IDs[i][0])
         // data = EventFetcher("http://localhost:3000/resources/"+e.IDs[i][1])
         console.log(data)
         saved.push(data)
     }
 
-    if(saved.length == 0){
+    if(saved.length === 0){
         return (
             <h1>You currently have no Saved Events</h1>
         )
@@ -49,7 +36,6 @@ export default function SavedEvents() {
             <div style={containerStyle}>
                 <div style={childStyle}>
                     {saved.map(item => <Event
-                        type={item.type}
                         id={item.id} 
                         title={item.title} 
                         startDate = {item.startdate}
@@ -77,12 +63,12 @@ function SavedEvent({ value, name, children, ...props }){
     var e = JSON.parse(savedEvents);
     for(let i = 0; i < e.IDs.length; i++){
         for(let j = 0; j < value.length; j++){
-            if(e.IDs[i] == value[j].id){
+            if(e.IDs[i] === value[j].id){
                 saved.push(value[j]) 
             }
         }
     }
-    if(saved.length == 0){
+    if(saved.length === 0){
         return (
             <h1>You currently have no Saved Events</h1>
         )

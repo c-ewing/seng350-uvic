@@ -1,23 +1,22 @@
 import React from 'react';
-import Event from '../common/Event'
-import EventFetcher from '../common/EventFetcher'
+import Event from '../../common/Event'
+import EventFetcher from '../../common/EventFetcher'
 
 export default function Jobs() {
     let data = EventFetcher("http://localhost:3000/resources/JobOpportunities")
     return (
         <>  
-            <EventType value={data} name={"JobOpportunities"}/>
+            <EventType value={data}/>
         </>
     )   
 }
 
-function EventType({ value, name, children, ...props }){
+function EventType({ value, children, ...props }){
     let eventMap = new Map();
 
     for(var item = 0; item < value.length; item++) {
             eventMap.set(
-                <Event
-                type={name}  
+                <Event  
                 id={value[item].id} 
                 title={value[item].title} 
                 startDate = {value[item].startdate}
@@ -38,7 +37,7 @@ function EventType({ value, name, children, ...props }){
         ) 
     }else {
         return (
-            <p>No Events Added Yet</p>
+            <p>No Jobs Added Yet</p>
         )
     } 
 }

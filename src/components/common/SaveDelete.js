@@ -1,14 +1,4 @@
 import React from 'react';
-import {
-    MDBCard,
-    MDBCardBody,
-    MDBCardTitle,
-    MDBCardText,
-    MDBRow,
-    MDBCol,
-    MDBBtn,
-    MDBCollapse
-} from 'mdb-react-ui-kit';
 import { Button } from 'react-bootstrap';
 import {useState} from 'react';
 
@@ -35,7 +25,7 @@ export default function SaveDelete({ value, children, ...props }) {
     }
   }
 
-  if(value[2] == true){
+  if(value[1] === true){
     clickState = !clickState
   }
 
@@ -65,7 +55,7 @@ export default function SaveDelete({ value, children, ...props }) {
           flag = 1;
         }
       }
-      if(flag == 0){
+      if(flag === 0){
         savedEvents.IDs.push(value)
       }
     }
