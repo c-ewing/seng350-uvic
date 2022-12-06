@@ -6,14 +6,15 @@ import Explore from "./Explore/Explore"
 import VictoriaResources from "./VictoriaResources/VictoriaResources"
 import SavedEvents from "./SavedEvents/SavedEvents"
 import Request from "./Request/Request"
-import Events from "./Explore/Events"
-import Sports from "./Explore/Sports"
-import Restaurants from "./Explore/Restaurants"
+import Events from "./Explore/Pages/Events"
+import Sports from "./Explore/Pages/Sports"
+import Restaurants from "./Explore/Pages/Restaurants"
 import {
   Route,
   Routes
 } from "react-router-dom"
 import EditProfile from './Profile/EditProfile/EditProfile'
+import Recommendations from './Explore/Recommendations'
 
 export const ExploreVicWebsite = () => {
     return <>
@@ -30,6 +31,7 @@ export const ExploreVicWebsite = () => {
         <Route path="/explore/events" element={<Events />} />
         <Route path="/explore/sports" element={<Sports />} />
         <Route path="/explore/restaurants" element={<Restaurants />} />
+        <Route path="/explore/recommendations" element={<Recommendations />} />
       </Routes>
     </div>
     <Footer />
