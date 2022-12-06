@@ -4,9 +4,6 @@ import {
     MDBCardBody,
     MDBCardTitle,
     MDBCardText,
-    MDBRow,
-    MDBCol,
-    MDBBtn,
     MDBCollapse
 } from 'mdb-react-ui-kit';
 import { Button } from 'react-bootstrap';
@@ -20,19 +17,21 @@ function LongDescription({value, children, ...props }){
 
 <div style={{border: "1px solid black", margin: "10px"}}></div>
 
-
-  return (
-    <>
-    <div >
-      <Button onClick={toggleFirstElement}>Show More Details</Button>
-      <MDBCollapse show={showFirstElement} className='mt-3'>
-        <MDBCardText>
-            {value}
-        </MDBCardText>
-      </MDBCollapse>
-      </div>
-    </>
-  )
+  // only show the collapsible button if there is a long description
+  if (value) {
+    return (
+      <>
+      <div >
+        <Button onClick={toggleFirstElement}>Show More Details</Button>
+        <MDBCollapse show={showFirstElement} className='mt-3'>
+          <MDBCardText>
+              {value}
+          </MDBCardText>
+        </MDBCollapse>
+        </div>
+      </>
+    )
+  }
 }
 
 class Styling {
@@ -79,7 +78,7 @@ class Event extends Component {
                 {this.props.image}
             </MDBCardText>
             <div > 
-            <SaveDelete value={this.props.id} />
+            <SaveDelete value={[this.props.id, this.props.saved]} />
             </div>
         </MDBCardBody>
     </MDBCard>
