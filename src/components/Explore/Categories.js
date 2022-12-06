@@ -6,12 +6,9 @@ import { FaBasketballBall, FaUtensils, FaChalkboardTeacher, FaSlideshare, FaUser
 
 
 export default function Categories() {
-    let navigate = useNavigate(); 
-    const routeChange = (path) => { 
+    let navigate = useNavigate();
+    const routeChange = (path) => {
         navigate(path);
-    }
-    const routeChangeJobs = () => { 
-        navigate('/explore/Jobs.js');
     }
 
     return (
@@ -19,7 +16,7 @@ export default function Categories() {
             <MDBTypography className="pb-2" tag="h4">Explore Categories</MDBTypography>
             <MDBCol>
                 <MDBCol>
-                    <MDBBtn onClick={() => routeChange('/Explore/Events')} color="outline-primary" className="square-xl">
+                    <MDBBtn onClick={() => routeChange('/explore/events')} color="outline-primary" className="square-xl">
                         <BsCalendarCheck size={50} />
                         <MDBRow className="justify-content-center align-items-center h-50">
                             EVENTS
@@ -39,7 +36,7 @@ export default function Categories() {
                     </MDBBtn>
                 </MDBCol>
                 <MDBCol>
-                <MDBBtn onClick={() => routeChange('/explore/school-clubs')} color="outline-primary" className="square-xl">
+                    <MDBBtn onClick={() => routeChange('/explore/school-clubs')} color="outline-primary" className="square-xl">
                         <FaSlideshare size={50} />
                         <MDBRow className="justify-content-center align-items-center h-50">
                             SCHOOL CLUBS
@@ -51,7 +48,7 @@ export default function Categories() {
                             LEARNING OPPORTUNITIES
                         </MDBRow>
                     </MDBBtn>
-                    <MDBBtn onClick={() => routeChangeJobs()} color="outline-primary" className="square-xl">
+                    <MDBBtn onClick={() => routeChange('/explore/jobs')} color="outline-primary" className="square-xl">
                         <BsBriefcase size={50} />
                         <MDBRow className="justify-content-center align-items-center h-50">
                             JOBS
@@ -59,12 +56,12 @@ export default function Categories() {
                     </MDBBtn>
                 </MDBCol>
                 <MDBBtn onClick={() => routeChange('/explore/recommendations')} color="outline-primary" className="square-xxl">
-                    
-                        <FaUserAlt size={50} />
-                        RECOMMENDATIONS FOR YOU 
+
+                    <FaUserAlt size={50} />
+                    RECOMMENDATIONS FOR YOU
                 </MDBBtn>
             </MDBCol>
-    </MDBContainer>
+        </MDBContainer>
     )
 }
 

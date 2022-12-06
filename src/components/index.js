@@ -8,6 +8,9 @@ import SavedEvents from "./SavedEvents/SavedEvents"
 import Request from "./Request/Request"
 import Events from "./Explore/Pages/Events"
 import Sports from "./Explore/Pages/Sports"
+import SchoolClubs from "./Explore/Pages/SchoolClubs"
+import Jobs from "./Explore/Pages/Jobs"
+import LearningOpportunities from "./Explore/Pages/LearningOps"
 import Restaurants from "./Explore/Pages/Restaurants"
 import {
   Route,
@@ -33,6 +36,9 @@ export const ExploreVicWebsite = () => {
         <Route path="/explore/events" element={<Events />} />
         <Route path="/explore/sports" element={<Sports />} />
         <Route path="/explore/restaurants" element={<Restaurants />} />
+        <Route path="/explore/school-clubs" element={<SchoolClubs />} />
+        <Route path="/explore/learning-opportunities" element={<LearningOpportunities />} />
+        <Route path="/explore/jobs" element={<Jobs />} />
         <Route path="/explore/search-results" element={<SearchResults />} />
         <Route path="/explore/recommendations" element={<Recommendations />} />
       </Routes>
