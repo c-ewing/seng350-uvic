@@ -19,10 +19,10 @@ export default function Profile() {
 
 
     return (
-        <div className="vh-100" style={{ backgroundColor: '#eee'}}>
+        <div className="vh-100" style={{backgroundColor: '#eee'}}>
             <MDBContainer className="container py-3 h-100">
                 <MDBTypography className="mb-4 pb-2" tag="h1">My Profile</MDBTypography>
-                <MDBRow className="justify-content-center align-items-left h-100">
+                <MDBRow className="justify-content-center align-items-left h-75">
                     <MDBCol md="12" xl="4">
                         <MDBCard style={{ borderRadius: '15px' }}>
                             <MDBCardBody className="text-center">
@@ -61,7 +61,7 @@ export default function Profile() {
                             </MDBCardBody>
                         </MDBCard>
                     </MDBCol>
-                    <MDBCol md="12" xl="7">
+                    <MDBCol md="12" xl="7" style={{height: '50px'}}>
                         <MDBCard style={{ borderRadius: '15px' }}>
                             <MDBCardBody className="text-center">
                                 <MDBTypography tag="h4" className="mb-4">Your Interests</MDBTypography>
@@ -70,13 +70,7 @@ export default function Profile() {
                                 </div>
                             </MDBCardBody>
                         </MDBCard>
-                        {/* <MDBCard style={{ borderRadius: '15px', margin: '15px 0' }}>
-                            <MDBCardBody className="text-center">
-                                <MDBTypography tag="h4" className="mb-4">Your Saved Events</MDBTypography>
-                                <Link to='src/components/SavedEvents/SavedEvents' > some stuff </Link>
-                                
-                            </MDBCardBody>
-                        </MDBCard> */}
+
                     </MDBCol>    
                 </MDBRow>
             </MDBContainer>
