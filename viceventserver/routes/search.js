@@ -74,8 +74,6 @@ const search_by_term_without_resource = function (req, res) {
 
   rows_promise.then((rows) => {
     if (rows) {
-      // Remove the long description to save response space
-      rows.map(row => row.longDescription = "")
       res.json(rows)
     } else {
       // Error of some sort, just 404
