@@ -1,6 +1,6 @@
 export default function Request() {
     return (
-    <div className="container-for-request-form">
+    <div className="container-for-request-form" style={{height:'100vh'}}>
         <form className="request-form">
             <h2 className="margin-bottom">Create Your Own Event</h2>
             <input className="form-styling" type={"text"} id={"type"} placeholder={"Event Type"} required></input>
