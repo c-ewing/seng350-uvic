@@ -6,14 +6,7 @@ export default function Recommendations () {
     const arrInterests = profile.interests ? profile.interests: [];
     const interests = arrInterests.join();
 
-    let data = EventFetcher(`http://localhost:3000/search/${interests}`);
-
-    // if the user has no recommendations from their interests, return uvic events
-    if (data.length === 0) {
-        data = EventFetcher('http://localhost:3000/search/uvic');
-    }
-
-    console.log(data);
+    let data = EventFetcher(`http://localhost:3000/search/${interests},uvic`);
 
     return (
         <>  
