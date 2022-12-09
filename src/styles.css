@@ -30,6 +30,54 @@ html, body {
     background-color: white;
 }
 
+.container-for-request-form {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    background: white;
+    margin-top: 40px;
+}
+
+.request-form {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 2vw 4vw;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.form-styling {
+    border: 0;
+    margin: 10px 0;
+    padding: 20px;
+    outline: none;
+    background: whitesmoke;
+    font-size: 16px;
+}
+
+.form-submit {
+    padding: 15px;
+    background: #ff5361;
+    color: whitesmoke;
+    font-size: 18px;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    width: 150px;
+    margin: 20px auto 0;
+    border-radius: 30px;
+}
+
+.margin-bottom {
+    font-weight: 800px;
+
+}
+
 .site-title {
     font-size: 2rem;
 }
